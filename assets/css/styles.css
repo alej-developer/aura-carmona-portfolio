@@ -156,3 +156,30 @@ p {
   background-color: var(--color-accent);
   color: var(--color-white-pure);
 }
+
+/* --------------------------------------------------------------------------
+   4. Runway Animation Engine Classes
+   -------------------------------------------------------------------------- */
+
+/* Estado inicial: Oculto, desplazado en Y (hacia abajo) y ligeramente escalado (simulando eje Z) */
+.runway-item {
+  opacity: 0;
+  transform: translateY(60px) scale(0.96);
+  /* Curva cubic-bezier elegante de alta costura para movimientos fluidos */
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+/* Estado activo: Entra en el Viewport */
+.runway-item.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Retrasos escalonados para cuando múltiples modelos/elementos entran simultáneamente */
+.runway-item.delay-100 { transition-delay: 100ms; }
+.runway-item.delay-200 { transition-delay: 200ms; }
+.runway-item.delay-300 { transition-delay: 300ms; }
+.runway-item.delay-400 { transition-delay: 400ms; }
+.runway-item.delay-500 { transition-delay: 500ms; }
+
