@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Carmona | Portfolio Alta Costura</title>
-    
+
     <!-- 
       Content Security Policy (CSP) Estricto:
       - default-src 'self': Restringe todo el contenido al mismo origen por defecto.
@@ -16,19 +17,22 @@
       - form-action 'self': Evita el envío de formularios hacia otros dominios.
       - frame-ancestors 'none': Directiva moderna para evitar Clickjacking (equivalente a X-Frame-Options: DENY). 
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
-    
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
+
     <!-- Prevención contra Clickjacking (Equivalente X-Frame-Options mediante metaetiqueta legacy) -->
     <meta http-equiv="X-Frame-Options" content="DENY">
 
     <!-- Asegurando que no se expongan API Keys ni configuraciones sensibles en cliente -->
 
-    <meta name="description" content="Portafolio interactivo de la diseñadora de alta costura Aura Carmona. Elegancia, vanguardia y exclusividad.">
+    <meta name="description"
+        content="Portafolio interactivo de la diseñadora de alta costura Aura Carmona. Elegancia, vanguardia y exclusividad.">
     <meta name="author" content="Aura Carmona">
 
     <!-- Enlace a estilos (siguiendo política de mismo origen 'self') -->
     <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
+
 <body class="antialiased">
     <!-- Custom Cursor -->
     <div class="custom-cursor">
@@ -50,15 +54,15 @@
         <section id="inicio" class="hero">
             <!-- Contenedor para vídeo o imagen de fondo (Desfile) -->
             <div class="hero-bg">
-                <!-- Placeholder semántico: Usa un gradiente oscuro que respeta la directiva estricta CSP (img-src 'self') -->
-                <div class="hero-bg-placeholder" role="img" aria-label="Fondo animado de pasarela y desfile de alta costura"></div>
+                <img src="./assets/images/minimalist-fashion-studio.png" class="hero-bg-image" alt="Estudio de Diseño Minimalista" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
             </div>
 
             <!-- Contenido Tipográfico de Alto Impacto -->
             <div class="hero-content">
                 <!-- Aplicando las clases .runway-item que conectan con el motor JS de IntersectionObserver -->
                 <h1 class="hero-title runway-item">Alta<br>Costura</h1>
-                <p class="hero-subtitle runway-item delay-200">Redefiniendo la elegancia y la vanguardia en cada diseño.</p>
+                <p class="hero-subtitle runway-item delay-200">Redefiniendo la elegancia y la vanguardia en cada diseño.
+                </p>
                 <div class="runway-item delay-400">
                     <a href="#colecciones" class="hero-cta">Explorar Colección</a>
                 </div>
@@ -68,17 +72,20 @@
         <!-- Sección de Colecciones (Efecto Pasarela 3D) -->
         <section id="colecciones" class="collections">
             <header class="collections-header">
-                <div class="mask-wrap"><h2 class="section-title mask-text">Colecciones</h2></div>
-                <div class="mask-wrap"><p class="section-subtitle mask-text">Otoño / Invierno 2026</p></div>
+                <div class="mask-wrap">
+                    <h2 class="section-title mask-text">Colecciones</h2>
+                </div>
+                <div class="mask-wrap">
+                    <p class="section-subtitle mask-text">Otoño / Invierno 2026</p>
+                </div>
             </header>
 
             <div class="runway-3d-container">
                 <!-- Modelo 1 -->
                 <article class="runway-model-3d">
                     <picture>
-                        <!-- Data URI SVG para respetar el CSP img-src 'self' data: -->
-                        <source srcset="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>" type="image/svg+xml">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>" alt="Look de la colección Otoño-Invierno - Vista Frontal" loading="lazy" class="model-img">
+                        <img src="./assets/images/model-cream-dress.png"
+                            alt="Look de la colección Otoño-Invierno - Vestido Seda Crema" loading="lazy" class="model-img">
                     </picture>
                     <div class="model-caption">
                         <h3>Look 01</h3>
@@ -89,8 +96,11 @@
                 <!-- Modelo 2 -->
                 <article class="runway-model-3d">
                     <picture>
-                        <source srcset="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1100'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>" type="image/svg+xml">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1100'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>" alt="Look principal de la pasarela" loading="lazy" class="model-img">
+                        <source
+                            srcset="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1100'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>"
+                            type="image/svg+xml">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1100'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>"
+                            alt="Look principal de la pasarela" loading="lazy" class="model-img">
                     </picture>
                     <div class="model-caption">
                         <h3>Look 02</h3>
@@ -101,8 +111,11 @@
                 <!-- Modelo 3 -->
                 <article class="runway-model-3d">
                     <picture>
-                        <source srcset="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>" type="image/svg+xml">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>" alt="Look de cierre de la pasarela" loading="lazy" class="model-img">
+                        <source
+                            srcset="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>"
+                            type="image/svg+xml">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>"
+                            alt="Look de cierre de la pasarela" loading="lazy" class="model-img">
                     </picture>
                     <div class="model-caption">
                         <h3>Look 03</h3>
@@ -123,15 +136,18 @@
                 <!-- Producto 1 -->
                 <article class="catalog-card runway-item">
                     <div class="card-image-wrap">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23d9d4cf'/></svg>" class="img-main" alt="Vestido Éter" loading="lazy">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>" class="img-macro" alt="Textura Vestido Éter" loading="lazy">
+                        <img src="./assets/images/model-cream-dress.png"
+                            class="img-main" alt="Vestido Éter" loading="lazy">
+                        <img src="./assets/images/linen-macro-texture.png"
+                            class="img-macro" alt="Textura Vestido Éter Macro Lino" loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Vestido Éter</h3>
                         <p class="card-materials">Seda cruda orgánica, lino natural texturizado</p>
                         <div class="card-footer">
                             <span class="card-price">1,200 EUR</span>
-                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Vestido%20Éter%20de%20tu%20colección." class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
+                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Vestido%20Éter%20de%20tu%20colección."
+                                class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
                         </div>
                     </div>
                 </article>
@@ -139,15 +155,18 @@
                 <!-- Producto 2 -->
                 <article class="catalog-card runway-item">
                     <div class="card-image-wrap">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23cfc8c2'/></svg>" class="img-main" alt="Abrigo Tierra" loading="lazy">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>" class="img-macro" alt="Textura Abrigo Tierra" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23cfc8c2'/></svg>"
+                            class="img-main" alt="Abrigo Tierra" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>"
+                            class="img-macro" alt="Textura Abrigo Tierra" loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Abrigo Tierra</h3>
                         <p class="card-materials">Lana virgen reciclada, forro de algodón puro</p>
                         <div class="card-footer">
                             <span class="card-price">1,850 EUR</span>
-                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Abrigo%20Tierra%20de%20tu%20colección." class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
+                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Abrigo%20Tierra%20de%20tu%20colección."
+                                class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
                         </div>
                     </div>
                 </article>
@@ -155,15 +174,18 @@
                 <!-- Producto 3 -->
                 <article class="catalog-card runway-item">
                     <div class="card-image-wrap">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23e3ded9'/></svg>" class="img-main" alt="Blusa Brisa" loading="lazy">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>" class="img-macro" alt="Textura Blusa Brisa" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23e3ded9'/></svg>"
+                            class="img-main" alt="Blusa Brisa" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>"
+                            class="img-macro" alt="Textura Blusa Brisa" loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Blusa Brisa</h3>
                         <p class="card-materials">Gasa de seda artesanal, bordados florales sutiles</p>
                         <div class="card-footer">
                             <span class="card-price">650 EUR</span>
-                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Blusa%20Brisa%20de%20tu%20colección." class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
+                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Blusa%20Brisa%20de%20tu%20colección."
+                                class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
                         </div>
                     </div>
                 </article>
@@ -171,15 +193,18 @@
                 <!-- Producto 4 -->
                 <article class="catalog-card runway-item">
                     <div class="card-image-wrap">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23d0cac5'/></svg>" class="img-main" alt="Pantalón Raíz" loading="lazy">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>" class="img-macro" alt="Textura Pantalón Raíz" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23d0cac5'/></svg>"
+                            class="img-main" alt="Pantalón Raíz" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>"
+                            class="img-macro" alt="Textura Pantalón Raíz" loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Pantalón Raíz</h3>
                         <p class="card-materials">Cáñamo orgánico estructurado, caída fluida</p>
                         <div class="card-footer">
                             <span class="card-price">890 EUR</span>
-                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Pantalón%20Raíz%20de%20tu%20colección." class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
+                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Pantalón%20Raíz%20de%20tu%20colección."
+                                class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
                         </div>
                     </div>
                 </article>
@@ -187,15 +212,18 @@
                 <!-- Producto 5 -->
                 <article class="catalog-card runway-item">
                     <div class="card-image-wrap">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23e0dbd6'/></svg>" class="img-main" alt="Falda Musgo" loading="lazy">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>" class="img-macro" alt="Textura Falda Musgo" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23e0dbd6'/></svg>"
+                            class="img-main" alt="Falda Musgo" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%236b705c'/></svg>"
+                            class="img-macro" alt="Textura Falda Musgo" loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Falda Musgo</h3>
                         <p class="card-materials">Terciopelo de algodón ecológico, teñido natural</p>
                         <div class="card-footer">
                             <span class="card-price">950 EUR</span>
-                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Falda%20Musgo%20de%20tu%20colección." class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
+                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Falda%20Musgo%20de%20tu%20colección."
+                                class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
                         </div>
                     </div>
                 </article>
@@ -203,15 +231,18 @@
                 <!-- Producto 6 -->
                 <article class="catalog-card runway-item">
                     <div class="card-image-wrap">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23c7c2be'/></svg>" class="img-main" alt="Chaqueta Ceniza" loading="lazy">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>" class="img-macro" alt="Textura Chaqueta Ceniza" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%23c7c2be'/></svg>"
+                            class="img-main" alt="Chaqueta Ceniza" loading="lazy">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'><rect width='100%25' height='100%25' fill='%232d2a26'/></svg>"
+                            class="img-macro" alt="Textura Chaqueta Ceniza" loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Chaqueta Ceniza</h3>
                         <p class="card-materials">Lana merino sin tratar, botones de madera tallada</p>
                         <div class="card-footer">
                             <span class="card-price">1,450 EUR</span>
-                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Chaqueta%20Ceniza%20de%20tu%20colección." class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
+                            <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20Chaqueta%20Ceniza%20de%20tu%20colección."
+                                class="card-whatsapp" target="_blank" rel="noopener noreferrer">Solicitar</a>
                         </div>
                     </div>
                 </article>
@@ -227,13 +258,15 @@
 
             <div class="social-links-container">
                 <!-- Enlace Tipográfico a Instagram (Usa políticas estrictas de seguridad) -->
-                <a href="https://www.instagram.com/auracarmona_moda" target="_blank" rel="noopener noreferrer" class="social-link runway-item delay-200">
+                <a href="https://www.instagram.com/auracarmona_moda" target="_blank" rel="noopener noreferrer"
+                    class="social-link runway-item delay-200">
                     <span class="social-name">Instagram</span>
                     <span class="social-handle">@auracarmona_moda</span>
                 </a>
 
                 <!-- Enlace Tipográfico a Threads -->
-                <a href="https://www.threads.com/@auracarmona_moda" target="_blank" rel="noopener noreferrer" class="social-link runway-item delay-400">
+                <a href="https://www.threads.com/@auracarmona_moda" target="_blank" rel="noopener noreferrer"
+                    class="social-link runway-item delay-400">
                     <span class="social-name">Threads</span>
                     <span class="social-handle">@auracarmona_moda</span>
                 </a>
@@ -241,10 +274,11 @@
 
             <!-- Botones de Contacto Directo -->
             <div class="direct-contact-container">
-                <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20gustaría%20solicitar%20información%20sobre%20tus%20colecciones%20exclusivas." target="_blank" rel="noopener noreferrer" class="contact-btn whatsapp-btn runway-item delay-200">
+                <a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20gustaría%20solicitar%20información%20sobre%20tus%20colecciones%20exclusivas."
+                    target="_blank" rel="noopener noreferrer" class="contact-btn whatsapp-btn runway-item delay-200">
                     Contactar vía WhatsApp
                 </a>
-                
+
                 <!-- Botón de Email Ofuscado mediante JS (Anti-Spam) -->
                 <button class="contact-btn email-btn secure-email-btn runway-item delay-400">
                     Enviar Correo Electrónico
@@ -259,7 +293,8 @@
             <p>&copy; <span id="current-year"></span> Aura Carmona. Todos los derechos reservados.</p>
             <nav class="footer-nav" aria-label="Enlaces legales y políticas">
                 <ul>
-                    <li><a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20[Nombre%20de%20la%20Pieza]%20de%20tu%20colección." class="footer-link" target="_blank" rel="noopener noreferrer">Ventas por WhatsApp</a></li>
+                    <li><a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20[Nombre%20de%20la%20Pieza]%20de%20tu%20colección."
+                            class="footer-link" target="_blank" rel="noopener noreferrer">Ventas por WhatsApp</a></li>
                     <li><a href="#" class="footer-link">Política de Privacidad</a></li>
                     <li><a href="#" class="footer-link">Términos y Condiciones</a></li>
                     <li><a href="#" class="footer-link">Declaración de Accesibilidad</a></li>
@@ -276,4 +311,5 @@
     <!-- Enlace a script principal -->
     <script src="./assets/js/main.js"></script>
 </body>
+
 </html>
