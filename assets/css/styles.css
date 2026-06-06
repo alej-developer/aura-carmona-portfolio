@@ -277,4 +277,89 @@ p {
   }
 }
 
+/* --------------------------------------------------------------------------
+   6. Hero Section
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  /* Ocupa exactamente el 100% del alto de la ventana visible */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Background Media Container */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--color-black-deep);
+}
+
+/* Placeholder semántico puro CSS (respeta la política estricta de CSP) */
+.hero-bg-placeholder {
+  width: 100%;
+  height: 100%;
+  /* Gradiente moderno que aporta profundidad y elegancia */
+  background: linear-gradient(135deg, rgba(28,28,28,0.95), rgba(10,10,10,1));
+}
+
+/* Contenedor central del contenido */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-md);
+  max-width: 900px;
+}
+
+/* Tipografía de muy alto impacto */
+.hero-title {
+  font-family: var(--font-secondary);
+  /* clamp() gigante para garantizar impacto visual brutal tanto en móviles como en monitores 4K */
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-md);
+  color: var(--color-white-pure);
+}
+
+.hero-subtitle {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-xl);
+  color: var(--color-gray-light);
+  text-transform: uppercase;
+}
+
+/* Call to Action elegante */
+.hero-cta {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-xl);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-white-pure);
+  border: 1px solid var(--color-accent);
+  background-color: transparent;
+  transition: all var(--transition-normal);
+}
+
+.hero-cta:hover {
+  background-color: var(--color-accent);
+  color: var(--color-black-deep);
+}
+
+
 

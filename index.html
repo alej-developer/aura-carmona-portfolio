@@ -42,16 +42,22 @@
     </header>
 
     <main>
-        <section id="introduccion">
-            <p>Descubre un mundo de diseño, vanguardia y exclusividad.</p>
-            
-            <!-- Referencia a recurso externo segura usando rel="noopener noreferrer" -->
-            <p>
-                Este proyecto es código abierto. Puedes visualizarlo en 
-                <a href="https://github.com/alej-developer" target="_blank" rel="noopener noreferrer">
-                    mi repositorio de GitHub
-                </a>.
-            </p>
+        <section id="inicio" class="hero">
+            <!-- Contenedor para vídeo o imagen de fondo (Desfile) -->
+            <div class="hero-bg">
+                <!-- Placeholder semántico: Usa un gradiente oscuro que respeta la directiva estricta CSP (img-src 'self') -->
+                <div class="hero-bg-placeholder" role="img" aria-label="Fondo animado de pasarela y desfile de alta costura"></div>
+            </div>
+
+            <!-- Contenido Tipográfico de Alto Impacto -->
+            <div class="hero-content">
+                <!-- Aplicando las clases .runway-item que conectan con el motor JS de IntersectionObserver -->
+                <h1 class="hero-title runway-item">Alta<br>Costura</h1>
+                <p class="hero-subtitle runway-item delay-200">Redefiniendo la elegancia y la vanguardia en cada diseño.</p>
+                <div class="runway-item delay-400">
+                    <a href="#colecciones" class="hero-cta">Explorar Colección</a>
+                </div>
+            </div>
         </section>
     </main>
 
