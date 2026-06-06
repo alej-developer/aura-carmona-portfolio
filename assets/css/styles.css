@@ -9,15 +9,15 @@
    1. CSS Custom Properties (Variables)
    -------------------------------------------------------------------------- */
 :root {
-  /* Color Palette - Avant-Garde Editorial Dark Mode */
-  --color-bg-main: #050505;
-  --color-bg-soft: #111;
-  --color-text-main: #fafafa;
-  --color-text-muted: #888;
-  --color-border: rgb(250 250 250 / 10%);
-
-  /* Vibrant Accent Color (Scarlet Red) */
-  --color-accent: #ff2400;
+  /* Color Palette - Organic Luxe */
+  --color-bg-main: #f7f3f0; /* Cremas */
+  --color-bg-soft: #e9e4df;
+  --color-text-main: #2d2a26; /* Café Profundo */
+  --color-text-muted: #6b705c; /* Verde Oliva */
+  --color-border: rgb(45 42 38 / 10%);
+  
+  /* Vibrant Accent Color */
+  --color-accent: #6b705c; /* Verde Oliva */
 
   /* Fluid Typography - Base Values */
   --font-base: 16px;
@@ -244,7 +244,7 @@ p {
   z-index: 1000;
 
   /* Translucent with blur for high fashion glassmorphism effect */
-  background-color: rgb(5 5 5 / 85%);
+  background-color: rgb(247 243 240 / 85%);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgb(0 0 0 / 5%);
   transition: background-color var(--transition-normal), padding var(--transition-normal);
@@ -507,8 +507,8 @@ p {
   left: 0;
   width: 100%;
   padding: var(--space-md);
-  background: linear-gradient(transparent, rgb(0 0 0 / 85%));
-  color: var(--color-text-main);
+  background: linear-gradient(transparent, rgb(45 42 38 / 85%));
+  color: #f7f3f0;
   opacity: 0;
   transform: translateY(20px);
   transition: all var(--transition-normal);
@@ -520,7 +520,7 @@ p {
 }
 
 .model-caption h3 {
-  color: var(--color-text-main);
+  color: #f7f3f0;
   font-size: var(--text-xl);
   margin-bottom: var(--space-xs);
   letter-spacing: 0.05em;
@@ -531,7 +531,7 @@ p {
 .model-caption p {
   margin: 0;
   font-weight: 300;
-  color: var(--color-text-muted);
+  color: #e9e4df;
   letter-spacing: 0.15em;
   font-size: var(--text-xs);
   text-transform: uppercase;
@@ -573,7 +573,7 @@ p {
   justify-content: center;
   align-items: center;
   padding: var(--space-xl) var(--space-md);
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid var(--color-border);
   background-color: var(--color-bg-soft);
   position: relative;
   overflow: hidden;
@@ -675,7 +675,7 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   text-align: center;
-  border: 1px solid rgb(255 255 255 / 30%);
+  border: 1px solid var(--color-border);
   color: var(--color-text-main);
   background-color: transparent;
   position: relative;
@@ -723,7 +723,7 @@ p {
   background-color: var(--color-bg-main);
   color: var(--color-text-muted);
   padding: var(--space-xl) var(--space-md) var(--space-md);
-  border-top: 1px solid rgb(255 255 255 / 5%);
+  border-top: 1px solid var(--color-border);
   text-align: center;
   font-family: var(--font-primary);
   font-size: var(--text-xs);
@@ -796,7 +796,7 @@ input:focus-visible {
 .custom-cursor.is-active {
   width: 90px;
   height: 90px;
-  background-color: var(--color-text-main); /* Cambia a blanco */
+  background-color: #fff; /* Cambia a blanco puro para el difference */
   mix-blend-mode: difference; /* Invierte dinámicamente los colores de fondo */
 }
 
@@ -807,7 +807,7 @@ input:focus-visible {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-bg-main); /* Negro puro */
+  color: #000; /* Negro para crear el efecto cutout */
   transition: opacity 0.3s ease;
   transition-delay: 0s;
 }
