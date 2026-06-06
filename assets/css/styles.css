@@ -484,7 +484,6 @@ p {
   .runway-model-3d:nth-child(3) {
     margin-top: -30vh;
   }
-  .runway-model-3d:nth-child(3) { margin-top: -30vh; }
 }
 
 /* Imágenes e integración con <picture> optimizada */
