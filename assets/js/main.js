@@ -38,7 +38,39 @@ const RunwayEngine = (() => {
     // Desactivar el lag smoothing de GSAP para evitar conflictos
     gsap.ticker.lagSmoothing(0)
 
-    // 3. Efecto Pasarela 3D (Caminar hacia adelante con Parallax y Zoom)
+    // 3. Revelación de Pantalla Completa (Hero -> Colecciones)
+    const collectionsSection = document.querySelector('.collections')
+    if (collectionsSection) {
+      const headerMaskTexts = collectionsSection.querySelectorAll('.collections-header .mask-text')
+      const firstModelImg = collectionsSection.querySelector('.runway-model-3d:nth-child(1) .model-img')
+
+      // Estado inicial: textos ocultos abajo (máscara) e imagen cerrada al centro
+      gsap.set(headerMaskTexts, { yPercent: 100 })
+      gsap.set(firstModelImg, { clipPath: 'inset(0 50% 0 50%)', scale: 1.4 })
+
+      // Timeline de entrada orquestada con easing premium
+      ScrollTrigger.create({
+        trigger: collectionsSection,
+        start: "top 75%",
+        animation: gsap.timeline()
+          // Telón de la primera imagen
+          .to(firstModelImg, {
+            clipPath: 'inset(0 0% 0 0%)',
+            scale: 1,
+            duration: 2,
+            ease: "power4.out"
+          })
+          // Textos entrando línea por línea desde abajo
+          .to(headerMaskTexts, {
+            yPercent: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out"
+          }, "-=1.5") // Solapado pesado para mayor fluidez
+      })
+    }
+
+    // 4. Efecto Pasarela 3D (Caminar hacia adelante con Parallax y Zoom)
     const models3D = document.querySelectorAll('.runway-model-3d')
     
     models3D.forEach((model, index) => {

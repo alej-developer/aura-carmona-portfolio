@@ -36,6 +36,7 @@
   /* Font Families */
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Cinzel', serif;
+
   /* Avant-Garde Editorial Serif */
 
   /* Spacing System */
@@ -181,6 +182,18 @@ p {
 /* --------------------------------------------------------------------------
    4. Runway Animation Engine Classes
    -------------------------------------------------------------------------- */
+
+/* Clases utilitarias para enmascaramiento de texto (GSAP) */
+.mask-wrap {
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+
+.mask-text {
+  display: block;
+  will-change: transform;
+}
 
 /* Estado inicial: Oculto, desplazado en Y (hacia abajo) y ligeramente escalado (simulando eje Z) */
 .runway-item {
