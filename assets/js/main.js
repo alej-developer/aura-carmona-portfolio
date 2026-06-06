@@ -1,3 +1,6 @@
+/* eslint-env browser */
+/* global IntersectionObserver */
+
 /**
  * ============================================================================
  * Aura Carmona Portfolio
