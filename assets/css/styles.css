@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
 /* ==========================================================================
    Aura Carmona - High Fashion Portfolio
    Global Styles & Custom Properties
@@ -7,16 +9,15 @@
    1. CSS Custom Properties (Variables)
    -------------------------------------------------------------------------- */
 :root {
-  /* Color Palette - High Fashion / Minimalist Elegance */
-  --color-black-deep: #0a0a0a;
-  --color-black-soft: #1c1c1c;
-  --color-white-pure: #fff;
-  --color-white-off: #f7f7f7;
-  --color-gray-light: #e0e0e0;
-  --color-gray-dark: #4a4a4a;
+  /* Color Palette - Avant-Garde Editorial Dark Mode */
+  --color-bg-main: #050505;
+  --color-bg-soft: #111;
+  --color-text-main: #fafafa;
+  --color-text-muted: #888;
+  --color-border: rgb(250 250 250 / 10%);
   
-  /* Elegant Accent Color (Champagne / Muted Gold) */
-  --color-accent: #d4af37;
+  /* Vibrant Accent Color (Scarlet Red) */
+  --color-accent: #ff2400;
   
   /* Fluid Typography - Base Values */
   --font-base: 16px;
@@ -33,8 +34,8 @@
   --text-5xl: clamp(3rem, 2.5rem + 2.5vw, 5rem);
 
   /* Font Families */
-  --font-primary: 'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, helvetica, arial, sans-serif;
-  --font-secondary: 'Playfair Display', didot, 'Times New Roman', serif; /* Classic elegant serif for headings */
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Cinzel', serif; /* Avant-Garde Editorial Serif */
 
   /* Spacing System */
   --space-xs: 0.5rem;
@@ -71,8 +72,8 @@ html {
 }
 
 body {
-  background-color: var(--color-white-pure);
-  color: var(--color-black-deep);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
   font-family: var(--font-primary);
   font-size: var(--text-base);
   line-height: 1.6;
@@ -139,7 +140,7 @@ h6 {
   font-weight: 400;
   line-height: 1.2;
   margin-bottom: var(--space-md);
-  color: var(--color-black-deep);
+  color: var(--color-bg-main);
 }
 
 h1 { font-size: var(--text-5xl); }
@@ -156,7 +157,7 @@ p {
 /* High Fashion Selection Styling */
 ::selection {
   background-color: var(--color-accent);
-  color: var(--color-white-pure);
+  color: var(--color-text-main);
 }
 
 /* --------------------------------------------------------------------------
@@ -197,7 +198,7 @@ p {
   z-index: 1000;
 
   /* Translucent with blur for high fashion glassmorphism effect */
-  background-color: rgb(255 255 255 / 85%);
+  background-color: rgb(5 5 5 / 85%);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgb(0 0 0 / 5%);
   transition: background-color var(--transition-normal), padding var(--transition-normal);
@@ -218,7 +219,7 @@ p {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-black-deep);
+  color: var(--color-bg-main);
   margin-bottom: var(--space-sm);
   transition: color var(--transition-fast);
 }
@@ -237,7 +238,7 @@ p {
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--color-gray-dark);
+  color: var(--color-text-muted);
   position: relative;
   padding: 4px 0;
 }
@@ -255,7 +256,7 @@ p {
 }
 
 .nav-item:hover {
-  color: var(--color-black-deep);
+  color: var(--color-bg-main);
 }
 
 .nav-item:hover::after {
@@ -303,7 +304,7 @@ p {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-color: var(--color-black-deep);
+  background-color: var(--color-bg-main);
 }
 
 /* Placeholder semántico puro CSS (respeta la política estricta de CSP) */
@@ -335,7 +336,7 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-md);
-  color: var(--color-white-pure);
+  color: var(--color-text-main);
 }
 
 .hero-subtitle {
@@ -344,7 +345,7 @@ p {
   font-weight: 300;
   letter-spacing: 0.1em;
   margin-bottom: var(--space-xl);
-  color: var(--color-gray-light);
+  color: var(--color-text-muted);
   text-transform: uppercase;
 }
 
@@ -356,7 +357,7 @@ p {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--color-white-pure);
+  color: var(--color-text-main);
   border: 1px solid var(--color-accent);
   background-color: transparent;
   transition: all var(--transition-normal);
@@ -364,7 +365,7 @@ p {
 
 .hero-cta:hover {
   background-color: var(--color-accent);
-  color: var(--color-black-deep);
+  color: var(--color-bg-main);
 }
 
 /* --------------------------------------------------------------------------
@@ -373,7 +374,7 @@ p {
 
 .collections {
   padding: var(--space-3xl) var(--space-md);
-  background-color: var(--color-white-pure);
+  background-color: var(--color-bg-main);
   overflow: hidden;
 }
 
@@ -384,16 +385,17 @@ p {
 
 .section-title {
   font-family: var(--font-secondary);
-  font-size: var(--text-4xl);
+  font-size: clamp(3rem, 8vw, 6rem);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-black-deep);
+  letter-spacing: 0.05em;
+  color: var(--color-text-main);
+  line-height: 1;
 }
 
 .section-subtitle {
   font-family: var(--font-primary);
   font-style: italic;
-  color: var(--color-gray-dark);
+  color: var(--color-text-muted);
   font-size: var(--text-lg);
   margin-top: var(--space-xs);
 }
@@ -433,7 +435,7 @@ p {
   width: 100%;
   padding: var(--space-md);
   background: linear-gradient(transparent, rgb(0 0 0 / 85%));
-  color: var(--color-white-pure);
+  color: var(--color-text-main);
   opacity: 0;
   transform: translateY(20px);
   transition: all var(--transition-normal);
@@ -445,7 +447,7 @@ p {
 }
 
 .model-caption h3 {
-  color: var(--color-white-pure);
+  color: var(--color-text-main);
   font-size: var(--text-xl);
   margin-bottom: var(--space-xs);
   letter-spacing: 0.05em;
@@ -456,7 +458,7 @@ p {
 .model-caption p {
   margin: 0;
   font-weight: 300;
-  color: var(--color-gray-light);
+  color: var(--color-text-muted);
   letter-spacing: 0.15em;
   font-size: var(--text-xs);
   text-transform: uppercase;
@@ -516,18 +518,18 @@ p {
 
 .social {
   padding: var(--space-3xl) var(--space-md);
-  background-color: var(--color-black-deep);
-  color: var(--color-white-pure);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
   text-align: center;
 }
 
 /* Adaptación de la cabecera para fondo oscuro */
 .social .section-title {
-  color: var(--color-white-pure);
+  color: var(--color-text-main);
 }
 
 .social .section-subtitle {
-  color: var(--color-gray-light);
+  color: var(--color-text-muted);
 }
 
 .social-links-container {
@@ -547,7 +549,7 @@ p {
   align-items: center;
   padding: var(--space-xl) var(--space-md);
   border: 1px solid rgb(255 255 255 / 10%);
-  background-color: var(--color-black-soft);
+  background-color: var(--color-bg-soft);
   position: relative;
   overflow: hidden;
 
@@ -585,7 +587,7 @@ p {
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-white-pure);
+  color: var(--color-text-main);
   position: relative;
   z-index: 1;
   transition: color var(--transition-normal);
@@ -606,7 +608,7 @@ p {
 /* Al hacer hover, el texto muta a oscuro contrastando contra el color champagne */
 .social-link:hover .social-name,
 .social-link:hover .social-handle {
-  color: var(--color-black-deep);
+  color: var(--color-bg-main);
 }
 
 /* Pantallas grandes */
@@ -649,7 +651,7 @@ p {
   letter-spacing: 0.15em;
   text-align: center;
   border: 1px solid rgb(255 255 255 / 30%);
-  color: var(--color-white-pure);
+  color: var(--color-text-main);
   background-color: transparent;
   position: relative;
   overflow: hidden;
@@ -666,15 +668,15 @@ p {
   left: 50%;
   width: 300%;
   height: 300%;
-  background-color: var(--color-white-pure);
+  background-color: var(--color-text-main);
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   transform: translate(-50%, -50%) scale(0) rotate(45deg);
   z-index: -1;
 }
 
 .contact-btn:hover {
-  border-color: var(--color-white-pure);
-  color: var(--color-black-deep);
+  border-color: var(--color-text-main);
+  color: var(--color-bg-main);
 }
 
 .contact-btn:hover::after {
@@ -693,8 +695,8 @@ p {
    -------------------------------------------------------------------------- */
 
 .site-footer {
-  background-color: var(--color-black-deep);
-  color: var(--color-gray-light);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-muted);
   padding: var(--space-xl) var(--space-md) var(--space-md);
   border-top: 1px solid rgb(255 255 255 / 5%);
   text-align: center;
@@ -719,7 +721,7 @@ p {
 }
 
 .footer-link {
-  color: var(--color-gray-light);
+  color: var(--color-text-muted);
   transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
   text-decoration: underline;
   text-decoration-color: transparent;
