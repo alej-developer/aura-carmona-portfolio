@@ -38,12 +38,39 @@ const RunwayEngine = (() => {
     // Desactivar el lag smoothing de GSAP para evitar conflictos
     gsap.ticker.lagSmoothing(0)
 
-    // 3. Reemplazo de IntersectionObserver por GSAP ScrollTrigger
-    const items = document.querySelectorAll('.runway-item')
-    items.forEach(item => {
+    // 3. Efecto Pasarela 3D (Caminar hacia adelante con Parallax y Zoom)
+    const models3D = document.querySelectorAll('.runway-model-3d')
+    
+    models3D.forEach((model, index) => {
+      // Estado inicial (lejos y abajo)
+      gsap.set(model, { 
+        scale: 0.5, 
+        y: 300, 
+        opacity: 0,
+        transformOrigin: "center center" 
+      })
+
+      // Animación atada al scroll (acercándose)
+      gsap.to(model, {
+        scale: 1,
+        y: 0,
+        opacity: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: model,
+          start: "top 110%", // Empieza muy abajo
+          end: "center 45%", // Termina cuando la imagen pasa el centro
+          scrub: 1.5 // Interpolación supersuave
+        }
+      })
+    })
+
+    // Mantenemos animaciones para otros elementos como textos
+    const simpleItems = document.querySelectorAll('.runway-item')
+    simpleItems.forEach(item => {
       ScrollTrigger.create({
         trigger: item,
-        start: 'top 85%', // Mismo margen de activación que el observer anterior
+        start: 'top 85%',
         onEnter: () => item.classList.add('is-visible'),
         once: true
       })

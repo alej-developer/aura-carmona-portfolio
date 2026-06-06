@@ -15,10 +15,10 @@
   --color-text-main: #fafafa;
   --color-text-muted: #888;
   --color-border: rgb(250 250 250 / 10%);
-  
+
   /* Vibrant Accent Color (Scarlet Red) */
   --color-accent: #ff2400;
-  
+
   /* Fluid Typography - Base Values */
   --font-base: 16px;
 
@@ -35,7 +35,8 @@
 
   /* Font Families */
   --font-primary: 'Montserrat', sans-serif;
-  --font-secondary: 'Cinzel', serif; /* Avant-Garde Editorial Serif */
+  --font-secondary: 'Cinzel', serif;
+  /* Avant-Garde Editorial Serif */
 
   /* Spacing System */
   --space-xs: 0.5rem;
@@ -143,12 +144,29 @@ h6 {
   color: var(--color-bg-main);
 }
 
-h1 { font-size: var(--text-5xl); }
-h2 { font-size: var(--text-4xl); }
-h3 { font-size: var(--text-3xl); }
-h4 { font-size: var(--text-2xl); }
-h5 { font-size: var(--text-xl); }
-h6 { font-size: var(--text-lg); }
+h1 {
+  font-size: var(--text-5xl);
+}
+
+h2 {
+  font-size: var(--text-4xl);
+}
+
+h3 {
+  font-size: var(--text-3xl);
+}
+
+h4 {
+  font-size: var(--text-2xl);
+}
+
+h5 {
+  font-size: var(--text-xl);
+}
+
+h6 {
+  font-size: var(--text-lg);
+}
 
 p {
   margin-bottom: var(--space-sm);
@@ -181,11 +199,25 @@ p {
 }
 
 /* Retrasos escalonados para cuando múltiples modelos/elementos entran simultáneamente */
-.runway-item.delay-100 { transition-delay: 100ms; }
-.runway-item.delay-200 { transition-delay: 200ms; }
-.runway-item.delay-300 { transition-delay: 300ms; }
-.runway-item.delay-400 { transition-delay: 400ms; }
-.runway-item.delay-500 { transition-delay: 500ms; }
+.runway-item.delay-100 {
+  transition-delay: 100ms;
+}
+
+.runway-item.delay-200 {
+  transition-delay: 200ms;
+}
+
+.runway-item.delay-300 {
+  transition-delay: 300ms;
+}
+
+.runway-item.delay-400 {
+  transition-delay: 400ms;
+}
+
+.runway-item.delay-500 {
+  transition-delay: 500ms;
+}
 
 /* --------------------------------------------------------------------------
    5. Header & Navigation (Minimalist & Sticky)
@@ -264,18 +296,18 @@ p {
 }
 
 /* Responsive: Desktop (Media Query for Mobile First) */
-@media (width >= 768px) {
+@media (width >=768px) {
   .main-nav {
     flex-direction: row;
     justify-content: space-between;
     padding: var(--space-md) var(--space-xl);
   }
-  
+
   .brand-logo {
     margin-bottom: 0;
     font-size: var(--text-3xl);
   }
-  
+
   .nav-links {
     gap: var(--space-lg);
   }
@@ -400,18 +432,30 @@ p {
   margin-top: var(--space-xs);
 }
 
-/* Asymmetric CSS Grid */
-.runway-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-xl);
-  max-width: 1200px;
-  margin: 0 auto;
+/* Runway 3D Parallax Effect */
+.runway-3d-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--space-3xl);
 }
 
-.runway-model {
+.runway-model-3d {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 650px;
+  will-change: transform, opacity;
+}
+
+/* Superposición en el eje Y para el Parallax */
+.runway-model-3d:nth-child(1) { z-index: 1; }
+.runway-model-3d:nth-child(2) { z-index: 2; margin-top: -15vh; }
+.runway-model-3d:nth-child(3) { z-index: 3; margin-top: -15vh; }
+
+@media (width >= 768px) {
+  .runway-model-3d:nth-child(2) { margin-top: -30vh; }
+  .runway-model-3d:nth-child(3) { margin-top: -30vh; }
 }
 
 /* Imágenes e integración con <picture> optimizada */
@@ -423,7 +467,7 @@ p {
   transition: transform var(--transition-slow);
 }
 
-.runway-model:hover .model-img {
+.runway-model-3d:hover .model-img {
   transform: scale(1.05);
 }
 
@@ -441,7 +485,7 @@ p {
   transition: all var(--transition-normal);
 }
 
-.runway-model:hover .model-caption {
+.runway-model-3d:hover .model-caption {
   opacity: 1;
   transform: translateY(0);
 }
@@ -462,54 +506,6 @@ p {
   letter-spacing: 0.15em;
   font-size: var(--text-xs);
   text-transform: uppercase;
-}
-
-/* Diseño Asimétrico en Desktop (Sensación Kinestésica) */
-@media (width >= 768px) {
-  .runway-grid {
-    grid-template-columns: repeat(12, 1fr);
-    align-items: center;
-    gap: 0;
-    padding-bottom: var(--space-3xl);
-  }
-  
-  .model-left {
-    grid-column: 1 / 6;
-    margin-top: 100px;
-  }
-  
-  .model-center {
-    grid-column: 5 / 9;
-    z-index: 2;
-    margin-top: -80px; 
-  }
-  
-  .model-right {
-    grid-column: 8 / 13;
-    margin-top: 200px; 
-  }
-}
-
-@media (width >= 1024px) {
-  .model-left {
-    grid-column: 2 / 6;
-    margin-top: 150px;
-  }
-  
-  .model-center {
-    grid-column: 5 / 9;
-    margin-top: -150px;
-  }
-  
-  /* Override de la clase is-visible para hacer que el modelo central resalte (efecto 3D) */
-  .model-center.runway-item.is-visible {
-    transform: translateY(0) scale(1.1);
-  }
-  
-  .model-right {
-    grid-column: 8 / 12;
-    margin-top: 250px;
-  }
 }
 
 /* --------------------------------------------------------------------------
@@ -612,17 +608,17 @@ p {
 }
 
 /* Pantallas grandes */
-@media (width >= 768px) {
+@media (width >=768px) {
   .social-links-container {
     flex-direction: row;
     gap: var(--space-xl);
   }
-  
+
   .social-link {
     flex: 1;
     padding: var(--space-3xl) var(--space-md);
   }
-  
+
   .social-name {
     font-size: var(--text-4xl);
   }
@@ -683,7 +679,7 @@ p {
   transform: translate(-50%, -50%) scale(1) rotate(45deg);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .direct-contact-container {
     flex-direction: row;
     gap: var(--space-xl);
@@ -743,9 +739,3 @@ input:focus-visible {
   outline: 2px solid var(--color-accent) !important;
   outline-offset: 4px !important;
 }
-
-
-
-
-
-
