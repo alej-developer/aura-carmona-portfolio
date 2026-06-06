@@ -504,6 +504,121 @@ p {
   }
 }
 
+/* --------------------------------------------------------------------------
+   8. Social Media / Contact Section
+   -------------------------------------------------------------------------- */
+
+.social {
+  padding: var(--space-3xl) var(--space-md);
+  background-color: var(--color-black-deep);
+  color: var(--color-white-pure);
+  text-align: center;
+}
+
+/* Adaptación de la cabecera para fondo oscuro */
+.social .section-title {
+  color: var(--color-white-pure);
+}
+
+.social .section-subtitle {
+  color: var(--color-gray-light);
+}
+
+.social-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: var(--space-2xl);
+}
+
+/* Tarjetas Tipográficas Altamente Estilizadas */
+.social-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl) var(--space-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--color-black-soft);
+  position: relative;
+  overflow: hidden;
+  /* Transición base */
+  transition: border-color var(--transition-normal);
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-accent);
+  /* Llenado elegante de abajo hacia arriba */
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 0;
+}
+
+.social-link:hover {
+  border-color: var(--color-accent);
+}
+
+.social-link:hover::before {
+  transform: scaleY(1);
+}
+
+.social-name {
+  font-family: var(--font-secondary);
+  font-size: var(--text-3xl);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  position: relative;
+  z-index: 1;
+  transition: color var(--transition-normal);
+}
+
+.social-handle {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  margin-top: var(--space-xs);
+  color: var(--color-accent);
+  position: relative;
+  z-index: 1;
+  transition: color var(--transition-normal);
+}
+
+/* Al hacer hover, el texto muta a oscuro contrastando contra el color champagne */
+.social-link:hover .social-name,
+.social-link:hover .social-handle {
+  color: var(--color-black-deep);
+}
+
+/* Pantallas grandes */
+@media (min-width: 768px) {
+  .social-links-container {
+    flex-direction: row;
+    gap: var(--space-xl);
+  }
+  
+  .social-link {
+    flex: 1;
+    padding: var(--space-3xl) var(--space-md);
+  }
+  
+  .social-name {
+    font-size: var(--text-4xl);
+  }
+}
+
+
 
 
 
