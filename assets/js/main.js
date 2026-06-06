@@ -45,6 +45,25 @@ const RunwayEngine = (() => {
     items.forEach(item => {
       observer.observe(item)
     })
+
+    initEmailProtection()
+  }
+
+  /**
+   * Protección Anti-Spam: Ofuscación de Correo Electrónico
+   * Evita que bots de scraping capturen el email desde el HTML puro.
+   */
+  const initEmailProtection = () => {
+    const emailBtns = document.querySelectorAll('.secure-email-btn')
+    emailBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        // El email se ensambla dinámicamente en tiempo de ejecución
+        const user = 'contacto'
+        const domain = 'auracarmona.com'
+        window.location.href = `mailto:${user}@${domain}`
+      })
+    })
   }
 
   return { init }

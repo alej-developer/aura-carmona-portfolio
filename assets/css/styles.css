@@ -618,6 +618,69 @@ p {
   }
 }
 
+/* --------------------------------------------------------------------------
+   9. Direct Contact Buttons
+   -------------------------------------------------------------------------- */
+
+.direct-contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 800px;
+  margin: var(--space-3xl) auto 0;
+}
+
+.contact-btn {
+  display: inline-block;
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-white-pure);
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  transition: color var(--transition-normal), border-color var(--transition-normal);
+}
+
+/* Micro-interacción: Animación diagonal expansiva en hover */
+.contact-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background-color: var(--color-white-pure);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translate(-50%, -50%) scale(0) rotate(45deg);
+  z-index: -1;
+}
+
+.contact-btn:hover {
+  border-color: var(--color-white-pure);
+  color: var(--color-black-deep);
+}
+
+.contact-btn:hover::after {
+  transform: translate(-50%, -50%) scale(1) rotate(45deg);
+}
+
+@media (min-width: 768px) {
+  .direct-contact-container {
+    flex-direction: row;
+    gap: var(--space-xl);
+  }
+}
+
+
 
 
 
