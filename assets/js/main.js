@@ -38,6 +38,9 @@ const RunwayEngine = (() => {
     // Desactivar el lag smoothing de GSAP para evitar conflictos
     gsap.ticker.lagSmoothing(0)
 
+    // Inicializar el Custom Cursor (GSAP quickTo para máximo rendimiento)
+    initCustomCursor()
+
     // 3. Revelación de Pantalla Completa (Hero -> Colecciones)
     const collectionsSection = document.querySelector('.collections')
     if (collectionsSection) {
@@ -124,6 +127,46 @@ const RunwayEngine = (() => {
         const user = 'contacto'
         const domain = 'auracarmona.com'
         window.location.href = `mailto:${user}@${domain}`
+      })
+    })
+  }
+
+  /**
+   * Custom Cursor y Micro-interacciones
+   */
+  const initCustomCursor = () => {
+    const cursor = document.querySelector('.custom-cursor')
+    const cursorText = document.querySelector('.custom-cursor-text')
+    if (!cursor) return
+
+    // Centrar el transform origin usando GSAP en lugar de CSS para no colisionar con quickTo
+    gsap.set(cursor, { xPercent: -50, yPercent: -50 })
+
+    // Utilizamos gsap.quickTo para que siga al ratón con un retraso (delay/inercia) fluido
+    const xTo = gsap.quickTo(cursor, "x", { duration: 0.6, ease: "power3.out" })
+    const yTo = gsap.quickTo(cursor, "y", { duration: 0.6, ease: "power3.out" })
+
+    window.addEventListener("mousemove", (e) => {
+      xTo(e.clientX)
+      yTo(e.clientY)
+    })
+
+    // Detectar hovers en elementos interactivos para expandir el cursor
+    const interactables = document.querySelectorAll('a, button, .model-img')
+
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('is-active')
+        // Cambiamos el texto según el tipo de elemento
+        if (el.classList.contains('model-img')) {
+          cursorText.textContent = 'Ver'
+        } else {
+          cursorText.textContent = 'Explorar'
+        }
+      })
+      
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('is-active')
       })
     })
   }
