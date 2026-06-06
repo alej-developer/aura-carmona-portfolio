@@ -361,5 +361,149 @@ p {
   color: var(--color-black-deep);
 }
 
+/* --------------------------------------------------------------------------
+   7. Collections Section (Asymmetric Runway Effect)
+   -------------------------------------------------------------------------- */
+
+.collections {
+  padding: var(--space-3xl) var(--space-md);
+  background-color: var(--color-white-pure);
+  overflow: hidden;
+}
+
+.collections-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.section-title {
+  font-family: var(--font-secondary);
+  font-size: var(--text-4xl);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-black-deep);
+}
+
+.section-subtitle {
+  font-family: var(--font-primary);
+  font-style: italic;
+  color: var(--color-gray-dark);
+  font-size: var(--text-lg);
+  margin-top: var(--space-xs);
+}
+
+/* Asymmetric CSS Grid */
+.runway-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.runway-model {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Imágenes e integración con <picture> optimizada */
+.model-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.runway-model:hover .model-img {
+  transform: scale(1.05);
+}
+
+/* Captions sobre las imágenes (High Fashion Overlay) */
+.model-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-md);
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  color: var(--color-white-pure);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-normal);
+}
+
+.runway-model:hover .model-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.model-caption h3 {
+  color: var(--color-white-pure);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: var(--font-secondary);
+}
+
+.model-caption p {
+  margin: 0;
+  font-weight: 300;
+  color: var(--color-gray-light);
+  letter-spacing: 0.15em;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+}
+
+/* Diseño Asimétrico en Desktop (Sensación Kinestésica) */
+@media (min-width: 768px) {
+  .runway-grid {
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    gap: 0;
+    padding-bottom: var(--space-3xl);
+  }
+  
+  .model-left {
+    grid-column: 1 / 6;
+    margin-top: 100px;
+  }
+  
+  .model-center {
+    grid-column: 5 / 9;
+    z-index: 2;
+    margin-top: -80px; 
+  }
+  
+  .model-right {
+    grid-column: 8 / 13;
+    margin-top: 200px; 
+  }
+}
+
+@media (min-width: 1024px) {
+  .model-left {
+    grid-column: 2 / 6;
+    margin-top: 150px;
+  }
+  
+  .model-center {
+    grid-column: 5 / 9;
+    margin-top: -150px;
+  }
+  
+  /* Override de la clase is-visible para hacer que el modelo central resalte (efecto 3D) */
+  .model-center.runway-item.is-visible {
+    transform: translateY(0) scale(1.1);
+  }
+  
+  .model-right {
+    grid-column: 8 / 12;
+    margin-top: 250px;
+  }
+}
+
+
 
 
