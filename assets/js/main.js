@@ -66,7 +66,23 @@ const RunwayEngine = (() => {
     })
   }
 
-  return { init }
+  /**
+   * Accesibilidad: Actualización dinámica del año del Copyright
+   */
+  const setCopyrightYear = () => {
+    const yearElement = document.getElementById('current-year')
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear()
+    }
+  }
+
+  // Controlador de arranque unificado
+  const boot = () => {
+    init()
+    setCopyrightYear()
+  }
+
+  return { init: boot }
 })()
 
 // Iniciar el motor cuando el DOM esté listo

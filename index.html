@@ -31,8 +31,8 @@
 </head>
 <body>
     <header class="site-header">
-        <nav class="main-nav">
-            <a href="#" class="brand-logo">Aura Carmona</a>
+        <nav class="main-nav" aria-label="Navegación principal">
+            <a href="#" class="brand-logo" aria-label="Aura Carmona - Ir al inicio">Aura Carmona</a>
             <ul class="nav-links">
                 <li><a href="#colecciones" class="nav-item">Colecciones</a></li>
                 <li><a href="#filosofia" class="nav-item">Filosofía</a></li>
@@ -141,6 +141,20 @@
             </div>
         </section>
     </main>
+
+    <!-- Pie de Página Semántico -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; <span id="current-year"></span> Aura Carmona. Todos los derechos reservados.</p>
+            <nav class="footer-nav" aria-label="Enlaces legales y políticas">
+                <ul>
+                    <li><a href="#" class="footer-link">Política de Privacidad</a></li>
+                    <li><a href="#" class="footer-link">Términos y Condiciones</a></li>
+                    <li><a href="#" class="footer-link">Declaración de Accesibilidad</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
 
     <!-- Enlace a script (siguiendo política de mismo origen 'self') -->
     <script src="./assets/js/main.js"></script>

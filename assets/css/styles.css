@@ -680,6 +680,60 @@ p {
   }
 }
 
+/* --------------------------------------------------------------------------
+   10. Footer Section
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  background-color: var(--color-black-deep);
+  color: var(--color-gray-light);
+  padding: var(--space-xl) var(--space-md) var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: var(--text-xs);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.footer-link {
+  color: var(--color-gray-light);
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+
+.footer-link:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+/* --------------------------------------------------------------------------
+   11. Accesibilidad Global (WCAG Focus)
+   -------------------------------------------------------------------------- */
+
+/* Indicador de foco altamente visible para navegación por teclado (Accesibilidad WCAG AA/AAA) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-accent) !important;
+  outline-offset: 4px !important;
+}
+
 
 
 
