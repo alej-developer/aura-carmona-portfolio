@@ -10,14 +10,22 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Color Palette - Organic Luxe */
-  --color-bg-main: #f7f3f0; /* Cremas */
+  --color-bg-main: #f7f3f0;
+
+  /* Cremas */
   --color-bg-soft: #e9e4df;
-  --color-text-main: #2d2a26; /* Café Profundo */
-  --color-text-muted: #6b705c; /* Verde Oliva */
+  --color-text-main: #2d2a26;
+
+  /* Café Profundo */
+  --color-text-muted: #6b705c;
+
+  /* Verde Oliva */
   --color-border: rgb(45 42 38 / 10%);
-  
+
   /* Vibrant Accent Color */
-  --color-accent: #6b705c; /* Verde Oliva */
+  --color-accent: #6b705c;
+
+  /* Verde Oliva */
 
   /* Fluid Typography - Base Values */
   --font-base: 16px;
@@ -63,7 +71,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none !important; /* Oculta el cursor nativo en todo el sitio */
+  cursor: none !important;
+
+  /* Oculta el cursor nativo en todo el sitio */
 }
 
 html {
@@ -477,7 +487,7 @@ p {
   margin-top: -15vh;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .runway-model-3d:nth-child(2) {
     margin-top: -30vh;
   }
@@ -781,23 +791,29 @@ input:focus-visible {
   height: 14px;
   background-color: var(--color-accent);
   border-radius: 50%;
-  pointer-events: none; /* Crucial para no bloquear clicks */
+  pointer-events: none;
+
+  /* Crucial para no bloquear clicks */
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   /* Transición suave para tamaño y color */
-  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-              height 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-              background-color 0.4s ease;
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    background-color 0.4s ease;
 }
 
 .custom-cursor.is-active {
   width: 90px;
   height: 90px;
-  background-color: #fff; /* Cambia a blanco puro para el difference */
-  mix-blend-mode: difference; /* Invierte dinámicamente los colores de fondo */
+  background-color: #fff;
+
+  /* Cambia a blanco puro para el difference */
+  mix-blend-mode: difference;
+
+  /* Invierte dinámicamente los colores de fondo */
 }
 
 .custom-cursor-text {
@@ -807,12 +823,16 @@ input:focus-visible {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #000; /* Negro para crear el efecto cutout */
+  color: #000;
+
+  /* Negro para crear el efecto cutout */
   transition: opacity 0.3s ease;
   transition-delay: 0s;
 }
 
 .custom-cursor.is-active .custom-cursor-text {
   opacity: 1;
-  transition-delay: 0.15s; /* Aparece ligeramente después de que el círculo crece */
+  transition-delay: 0.15s;
+
+  /* Aparece ligeramente después de que el círculo crece */
 }
