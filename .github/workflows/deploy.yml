@@ -1,0 +1,71 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# Permisos requeridos para desplegar en GitHub Pages y leer el código
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite solo un despliegue a la vez, cancelando los que estén en curso si entra uno nuevo
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint HTML, CSS & JS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Linters
+        # Usamos herramientas globales y estándares rápidos y estrictos (HTMLHint, StandardJS, Stylelint)
+        run: npm install -g htmlhint standard stylelint stylelint-config-standard
+
+      - name: Lint HTML
+        run: npx htmlhint "**/*.html"
+
+      - name: Lint CSS
+        run: |
+          # Generamos una configuración mínima para stylelint al vuelo
+          echo '{"extends": "stylelint-config-standard"}' > .stylelintrc.json
+          npx stylelint "**/*.css" --allow-empty-input
+
+      - name: Lint JavaScript
+        run: npx standard "**/*.js"
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: lint
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Desplegamos desde el directorio raíz ya que ahí está el index.html y assets/
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
