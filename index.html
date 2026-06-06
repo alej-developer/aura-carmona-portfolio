@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Carmona | Portfolio Alta Costura</title>
+    
+    <!-- 
+      Content Security Policy (CSP) Estricto:
+      - default-src 'self': Restringe todo el contenido al mismo origen por defecto.
+      - script-src 'self': Bloquea scripts en línea (mitigación XSS) y carga solo desde el mismo origen.
+      - style-src 'self': Bloquea estilos en línea y carga solo desde el mismo origen.
+      - img-src 'self' data:: Permite imágenes locales y en formato base64.
+      - object-src 'none': Bloquea la ejecución de plugins de terceros.
+      - base-uri 'self': Restringe a dónde puede apuntar una etiqueta <base>.
+      - form-action 'self': Evita el envío de formularios hacia otros dominios.
+      - frame-ancestors 'none': Directiva moderna para evitar Clickjacking (equivalente a X-Frame-Options: DENY). 
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
+    
+    <!-- Prevención contra Clickjacking (Equivalente X-Frame-Options mediante metaetiqueta legacy) -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+
+    <!-- Asegurando que no se expongan API Keys ni configuraciones sensibles en cliente -->
+
+    <meta name="description" content="Portafolio interactivo de la diseñadora de alta costura Aura Carmona. Elegancia, vanguardia y exclusividad.">
+    <meta name="author" content="Aura Carmona">
+
+    <!-- Enlace a estilos (siguiendo política de mismo origen 'self') -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Aura Carmona</h1>
+        <h2>Colección de Alta Costura</h2>
+    </header>
+
+    <main>
+        <section id="introduccion">
+            <p>Descubre un mundo de diseño, vanguardia y exclusividad.</p>
+            
+            <!-- Referencia a recurso externo segura usando rel="noopener noreferrer" -->
+            <p>
+                Este proyecto es código abierto. Puedes visualizarlo en 
+                <a href="https://github.com/alej-developer" target="_blank" rel="noopener noreferrer">
+                    mi repositorio de GitHub
+                </a>.
+            </p>
+        </section>
+    </main>
+
+    <!-- Enlace a script (siguiendo política de mismo origen 'self') -->
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
