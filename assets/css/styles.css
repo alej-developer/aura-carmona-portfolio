@@ -1,6 +1,158 @@
-/* Main Stylesheet for Aura Carmona Portfolio */
-body {
+/* ==========================================================================
+   Aura Carmona - High Fashion Portfolio
+   Global Styles & Custom Properties
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Variables)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color Palette - High Fashion / Minimalist Elegance */
+  --color-black-deep: #0a0a0a;
+  --color-black-soft: #1c1c1c;
+  --color-white-pure: #ffffff;
+  --color-white-off: #f7f7f7;
+  --color-gray-light: #e0e0e0;
+  --color-gray-dark: #4a4a4a;
+  
+  /* Elegant Accent Color (Champagne / Muted Gold) */
+  --color-accent: #d4af37;
+  
+  /* Fluid Typography - Base Values */
+  --font-base: 16px;
+  /* Fluid type sizing (clamp for responsive scaling: min, preferred, max) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3.5rem);
+  --text-5xl: clamp(3rem, 2.5rem + 2.5vw, 5rem);
+
+  /* Font Families */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-secondary: 'Playfair Display', Didot, 'Times New Roman', serif; /* Classic elegant serif for headings */
+
+  /* Spacing System */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+  --space-3xl: 8rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   2. Manual CSS Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+}
+
+html {
+  font-size: var(--font-base);
+  scroll-behavior: smooth;
+  /* Prevents text scaling issues on mobile orientation change */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-white-pure);
+  color: var(--color-black-deep);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Media Elements Reset */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form Elements Reset */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover,
+a:focus {
+  color: var(--color-accent);
+}
+
+/* Lists */
+ul,
+ol {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Base Typography Assignments
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+  color: var(--color-black-deep);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+p {
+  margin-bottom: var(--space-sm);
+}
+
+/* High Fashion Selection Styling */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-white-pure);
 }
