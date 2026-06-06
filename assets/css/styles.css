@@ -462,12 +462,28 @@ p {
 }
 
 /* Superposición en el eje Y para el Parallax */
-.runway-model-3d:nth-child(1) { z-index: 1; }
-.runway-model-3d:nth-child(2) { z-index: 2; margin-top: -15vh; }
-.runway-model-3d:nth-child(3) { z-index: 3; margin-top: -15vh; }
+.runway-model-3d:nth-child(1) {
+  z-index: 1;
+}
+
+.runway-model-3d:nth-child(2) {
+  z-index: 2;
+  margin-top: -15vh;
+}
+
+.runway-model-3d:nth-child(3) {
+  z-index: 3;
+  margin-top: -15vh;
+}
 
 @media (width >= 768px) {
-  .runway-model-3d:nth-child(2) { margin-top: -30vh; }
+  .runway-model-3d:nth-child(2) {
+    margin-top: -30vh;
+  }
+
+  .runway-model-3d:nth-child(3) {
+    margin-top: -30vh;
+  }
   .runway-model-3d:nth-child(3) { margin-top: -30vh; }
 }
 
