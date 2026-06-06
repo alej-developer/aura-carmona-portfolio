@@ -1,52 +1,52 @@
 /* eslint-env browser */
-/* global IntersectionObserver */
+/* global Lenis, gsap, ScrollTrigger */
 
 /**
  * ============================================================================
  * Aura Carmona Portfolio
- * Core Animation Engine ("The Runway")
+ * Core Animation Engine ("The Runway") - Powered by GSAP & Lenis
  * ============================================================================
  */
 
 const RunwayEngine = (() => {
-  // Configuración del IntersectionObserver
-  const observerOptions = {
-    root: null, // Viewport por defecto
-    rootMargin: '0px 0px -15% 0px', // Se activa un poco antes de llegar al borde inferior
-    threshold: 0.1 // Requiere que al menos el 10% del elemento sea visible
-  }
-
   /**
-   * Callback principal del Observer
-   */
-  const handleIntersect = (entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Simulamos la entrada a la pasarela (aplica la clase de transición)
-        entry.target.classList.add('is-visible')
-
-        // Optimización: dejamos de observar el elemento una vez animado
-        // para ahorrar recursos y mejorar el rendimiento de scroll
-        observer.unobserve(entry.target)
-      }
-    })
-  }
-
-  /**
-   * Inicialización del motor
+   * Inicialización del sistema de Smooth Scroll y Animaciones
    */
   const init = () => {
-    // Graceful degradation: si no soporta IntersectionObserver, se muestra todo
-    if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.runway-item').forEach(el => el.classList.add('is-visible'))
-      return
-    }
+    // 1. Inicializar Lenis para smooth scrolling inmersivo
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Curva elegante
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false
+    })
 
-    const observer = new IntersectionObserver(handleIntersect, observerOptions)
+    // 2. Integrar Lenis con GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger)
+    lenis.on('scroll', ScrollTrigger.update)
+
+    // Sincronizar el ticker de GSAP con el requestAnimationFrame de Lenis
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000)
+    })
+    
+    // Desactivar el lag smoothing de GSAP para evitar conflictos
+    gsap.ticker.lagSmoothing(0)
+
+    // 3. Reemplazo de IntersectionObserver por GSAP ScrollTrigger
     const items = document.querySelectorAll('.runway-item')
-
     items.forEach(item => {
-      observer.observe(item)
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 85%', // Mismo margen de activación que el observer anterior
+        onEnter: () => item.classList.add('is-visible'),
+        once: true
+      })
     })
 
     initEmailProtection()

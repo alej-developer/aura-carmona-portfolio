@@ -8,7 +8,7 @@
     <!-- 
       Content Security Policy (CSP) Estricto:
       - default-src 'self': Restringe todo el contenido al mismo origen por defecto.
-      - script-src 'self': Bloquea scripts en línea (mitigación XSS) y carga solo desde el mismo origen.
+      - script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com: Permite scripts locales y de CDNs autorizados para animaciones.
       - style-src 'self': Bloquea estilos en línea y carga solo desde el mismo origen.
       - img-src 'self' data:: Permite imágenes locales y en formato base64.
       - object-src 'none': Bloquea la ejecución de plugins de terceros.
@@ -16,7 +16,7 @@
       - form-action 'self': Evita el envío de formularios hacia otros dominios.
       - frame-ancestors 'none': Directiva moderna para evitar Clickjacking (equivalente a X-Frame-Options: DENY). 
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
     
     <!-- Prevención contra Clickjacking (Equivalente X-Frame-Options mediante metaetiqueta legacy) -->
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -156,7 +156,12 @@
         </div>
     </footer>
 
-    <!-- Enlace a script (siguiendo política de mismo origen 'self') -->
+    <!-- Dependencias de Alto Rendimiento: GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+
+    <!-- Enlace a script principal -->
     <script src="./assets/js/main.js"></script>
 </body>
 </html>
