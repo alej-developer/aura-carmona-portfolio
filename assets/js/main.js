@@ -19,8 +19,8 @@ const RunwayEngine = (() => {
 
       const logo = preloader.querySelector('.preloader-logo')
       const thread = preloader.querySelector('.preloader-thread')
-      const curtainTop = preloader.querySelector('.preloader-curtain--top')
-      const curtainBottom = preloader.querySelector('.preloader-curtain--bottom')
+      const curtainTop = preloader.querySelector('.preloader-curtain-top')
+      const curtainBottom = preloader.querySelector('.preloader-curtain-bottom')
 
       document.body.classList.add('is-loading')
 

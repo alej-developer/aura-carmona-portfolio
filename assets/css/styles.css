@@ -158,11 +158,11 @@ p { margin-bottom: var(--space-sm); }
   background-color: var(--color-bg-dark);
 }
 
-.preloader-curtain--top {
+.preloader-curtain-top {
   top: 0;
 }
 
-.preloader-curtain--bottom {
+.preloader-curtain-bottom {
   bottom: 0;
 }
 
@@ -300,6 +300,7 @@ p { margin-bottom: var(--space-sm); }
     justify-content: space-between;
     padding: var(--space-md) var(--space-xl);
   }
+
   .brand-logo {
     margin-bottom: 0;
     font-size: var(--text-3xl);
@@ -612,13 +613,8 @@ p { margin-bottom: var(--space-sm); }
   }
 
   /* Hero card: ocupa 7 columnas */
-  .catalog-card--hero {
+  .catalog-card-hero {
     grid-column: span 7;
-  }
-
-  /* Cards normales: 5 columnas */
-  .catalog-card:not(.catalog-card--hero):not(.catalog-card--wide) {
-    grid-column: span 5;
   }
 
   /* Card tercera: empieza nueva fila con 6 */
@@ -631,12 +627,17 @@ p { margin-bottom: var(--space-sm); }
   }
 
   /* Wide card: ancho completo */
-  .catalog-card--wide {
+  .catalog-card-wide {
     grid-column: span 8;
   }
 
   .catalog-card:nth-child(6) {
     grid-column: span 4;
+  }
+
+  /* Cards normales: 5 columnas (al final para no causar descending-specificity) */
+  .catalog-card:not(.catalog-card-hero, .catalog-card-wide) {
+    grid-column: span 5;
   }
 }
 
@@ -778,16 +779,16 @@ p { margin-bottom: var(--space-sm); }
 /* --------------------------------------------------------------------------
    12. Social / Contact — Dark Mode
    -------------------------------------------------------------------------- */
-.social--dark {
+.social-dark {
   background-color: var(--color-bg-dark);
   color: var(--color-text-light);
 }
 
-.social--dark .section-title {
+.social-dark .section-title {
   color: var(--color-text-light);
 }
 
-.social--dark .section-subtitle {
+.social-dark .section-subtitle {
   color: rgb(247 243 240 / 50%);
 }
 
@@ -896,7 +897,7 @@ p { margin-bottom: var(--space-sm); }
 /* --------------------------------------------------------------------------
    13. Contact Buttons (Dark Variant)
    -------------------------------------------------------------------------- */
-.social--dark .direct-contact-container {
+.social-dark .direct-contact-container {
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
@@ -986,7 +987,7 @@ p { margin-bottom: var(--space-sm); }
 }
 
 @media (width >= 768px) {
-  .social--dark .direct-contact-container {
+  .social-dark .direct-contact-container {
     flex-direction: row;
     gap: var(--space-2xl);
   }
