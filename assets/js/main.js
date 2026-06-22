@@ -73,31 +73,42 @@ const RunwayEngine = (() => {
       })
     }
 
-    // 4. Efecto Pasarela 3D (Caminar hacia adelante con Parallax y Zoom)
+    // 4. Efecto Pasarela (Aparición elegante y Parallax interno)
     const models3D = document.querySelectorAll('.runway-model-3d')
     
-    models3D.forEach((model, index) => {
-      // Estado inicial (lejos y abajo)
-      gsap.set(model, { 
-        scale: 0.5, 
-        y: 300, 
-        opacity: 0,
-        transformOrigin: "center center" 
-      })
-
-      // Animación atada al scroll (acercándose)
-      gsap.to(model, {
-        scale: 1,
-        y: 0,
-        opacity: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: model,
-          start: "top 110%", // Empieza muy abajo
-          end: "center 45%", // Termina cuando la imagen pasa el centro
-          scrub: 1.5 // Interpolación supersuave
+    models3D.forEach((model) => {
+      // Aparición del contenedor (fade + slight translate)
+      gsap.fromTo(model, 
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: model,
+            start: "top 85%", // Inicia cuando el elemento entra en el 85% inferior del viewport
+            once: true
+          }
         }
-      })
+      )
+
+      // Efecto Parallax suave de la imagen dentro de su contenedor
+      const modelImg = model.querySelector('.model-img')
+      if (modelImg) {
+        // Hacemos la imagen ligeramente más grande para que tenga margen de movimiento sin dejar espacios en blanco
+        gsap.set(modelImg, { scale: 1.15, transformOrigin: "center top" })
+        gsap.to(modelImg, {
+          yPercent: 10, // Se desplaza hacia abajo mientras se hace scroll
+          ease: "none",
+          scrollTrigger: {
+            trigger: model,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        })
+      }
     })
 
     // Mantenemos animaciones para otros elementos como textos
