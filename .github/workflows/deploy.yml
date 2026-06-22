@@ -39,11 +39,11 @@ jobs:
       - name: Lint CSS
         run: |
           # Generamos una configuración mínima para stylelint al vuelo
-          echo '{"extends": "stylelint-config-standard"}' > .stylelintrc.json
+          echo '{"extends": "stylelint-config-standard", "ignoreFiles": ["**/*.min.css"]}' > .stylelintrc.json
           npx stylelint "**/*.css" --allow-empty-input
 
       - name: Lint JavaScript
-        run: npx standard "**/*.js"
+        run: npx standard "**/*.js" --ignore="**/*.min.js"
 
   deploy:
     name: Deploy to GitHub Pages
