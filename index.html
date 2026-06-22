@@ -18,7 +18,7 @@
       - frame-ancestors 'none': Directiva moderna para evitar Clickjacking (equivalente a X-Frame-Options: DENY). 
     -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
+        content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
 
     <!-- Prevención contra Clickjacking (Equivalente X-Frame-Options mediante metaetiqueta legacy) -->
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -34,14 +34,69 @@
 </head>
 
 <body class="antialiased">
-    <!-- Custom Cursor -->
+
+    <!-- =====================================================================
+         PRELOADER CINEMATOGRÁFICO
+         ===================================================================== -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-curtain preloader-curtain--top"></div>
+        <div class="preloader-curtain preloader-curtain--bottom"></div>
+        <div class="preloader-content">
+            <span class="preloader-logo">Aura Carmona</span>
+            <div class="preloader-thread"></div>
+        </div>
+    </div>
+
+    <!-- Cursor Personalizado: Aguja de Costura con Hilo -->
     <div class="custom-cursor">
+        <svg class="cursor-needle" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Gradiente metálico de acero pulido -->
+                <linearGradient id="needle-steel" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#d4d4d4"/>
+                    <stop offset="25%" stop-color="#fafafa"/>
+                    <stop offset="45%" stop-color="#b0b0b0"/>
+                    <stop offset="70%" stop-color="#888888"/>
+                    <stop offset="100%" stop-color="#666666"/>
+                </linearGradient>
+                <!-- Brillo especular (línea central de reflejo) -->
+                <linearGradient id="needle-shine" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+                    <stop offset="40%" stop-color="#ffffff" stop-opacity="0.9"/>
+                    <stop offset="60%" stop-color="#ffffff" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                </linearGradient>
+                <!-- Sombra sutil -->
+                <filter id="needle-shadow">
+                    <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="#2d2a26" flood-opacity="0.18"/>
+                </filter>
+            </defs>
+
+            <!-- AGUJA: cuerpo principal (forma real afilada) -->
+            <path d="M10,70 L12,68 L56,24 L58,26 Z" fill="url(#needle-steel)" filter="url(#needle-shadow)"/>
+            <!-- Brillo especular en el centro de la aguja -->
+            <line x1="11" y1="69" x2="57" y2="25" stroke="url(#needle-shine)" stroke-width="0.6" stroke-linecap="round"/>
+
+            <!-- PUNTA de la aguja (afilada) -->
+            <path d="M10,70 L8,72 L12,68 Z" fill="#999"/>
+
+            <!-- CABEZA de la aguja (zona superior, más ancha) -->
+            <ellipse cx="57" cy="25" rx="2.8" ry="1.4" transform="rotate(-45 57 25)" fill="url(#needle-steel)" filter="url(#needle-shadow)"/>
+
+            <!-- OJO de la aguja (hueco oval) -->
+            <ellipse cx="57" cy="25" rx="1" ry="3.2" transform="rotate(-45 57 25)" fill="#f7f3f0" stroke="#888" stroke-width="0.5"/>
+
+            <!-- HILO: sale del ojo hacia abajo-derecha, curva suelta y ligera -->
+            <path d="M59,27 C 66,34 78,30 72,42 C 66,54 80,58 75,68" 
+                  stroke="#a4161a" stroke-width="1" fill="none" stroke-linecap="round" 
+                  stroke-dasharray="none" opacity="0.85"/>
+        </svg>
         <span class="custom-cursor-text">Ver</span>
     </div>
 
     <header class="site-header">
         <nav class="main-nav" aria-label="Navegación principal">
-            <a href="#" class="brand-logo" aria-label="Aura Carmona - Ir al inicio">Aura Carmona</a>
+            <a href="javascript:void(0)" class="brand-logo" aria-label="Aura Carmona - Ir al inicio">Aura Carmona</a>
             <ul class="nav-links">
                 <li><a href="#colecciones" class="nav-item">Colecciones</a></li>
                 <li><a href="#filosofia" class="nav-item">Filosofía</a></li>
@@ -51,10 +106,13 @@
     </header>
 
     <main>
+        <!-- =====================================================================
+             HERO SECTION
+             ===================================================================== -->
         <section id="inicio" class="hero">
             <!-- Contenedor para vídeo o imagen de fondo (Desfile) -->
             <div class="hero-bg">
-                <img src="./assets/images/minimalist-fashion-studio.png" class="hero-bg-image"
+                <img src="./assets/images/minimalist-fashion-studio.webp" class="hero-bg-image"
                     alt="Estudio de Diseño Minimalista">
             </div>
 
@@ -70,7 +128,9 @@
             </div>
         </section>
 
-        <!-- Sección de Colecciones (Efecto Pasarela 3D) -->
+        <!-- =====================================================================
+             COLECCIONES — Scroll Horizontal Editorial
+             ===================================================================== -->
         <section id="colecciones" class="collections">
             <header class="collections-header">
                 <div class="mask-wrap">
@@ -81,53 +141,90 @@
                 </div>
             </header>
 
-            <div class="runway-3d-container">
-                <!-- Modelo 1 -->
-                <article class="runway-model-3d">
-                    <picture>
-                        <img src="./assets/images/model-cream-dress.png"
-                            alt="Look de la colección Otoño-Invierno - Vestido Seda Crema" loading="lazy"
-                            decoding="async" class="model-img">
-                    </picture>
-                    <div class="model-caption">
-                        <h3>Look 01</h3>
-                        <p>Seda y vanguardia</p>
-                    </div>
-                </article>
+            <div class="horizontal-scroll-wrapper">
+                <div class="horizontal-scroll-track">
+                    <!-- Slide 1 -->
+                    <article class="runway-slide">
+                        <div class="slide-image-wrap">
+                            <img src="./assets/images/model-cream-dress.webp"
+                                alt="Look 01 — Vestido Seda Crema" loading="lazy"
+                                decoding="async" class="model-img">
+                        </div>
+                        <div class="slide-caption">
+                            <span class="slide-number">01</span>
+                            <h3>Seda y Vanguardia</h3>
+                            <p>Vestido drapeado en seda cruda orgánica con acabado artesanal</p>
+                        </div>
+                    </article>
 
-                <!-- Modelo 2 -->
-                <article class="runway-model-3d">
-                    <picture>
-                        <source
-                            srcset="./assets/images/look-02-minimal.png"
-                            type="image/png">
-                        <img src="./assets/images/look-02-minimal.png"
-                            alt="Look principal de la pasarela" loading="lazy" decoding="async" class="model-img">
-                    </picture>
-                    <div class="model-caption">
-                        <h3>Look 02</h3>
-                        <p>Minimalismo absoluto</p>
-                    </div>
-                </article>
+                    <!-- Slide 2 -->
+                    <article class="runway-slide">
+                        <div class="slide-image-wrap">
+                            <img src="./assets/images/look-02-minimal.webp" alt="Look 02 — Minimalismo Absoluto"
+                                loading="lazy" decoding="async" class="model-img">
+                        </div>
+                        <div class="slide-caption">
+                            <span class="slide-number">02</span>
+                            <h3>Minimalismo Absoluto</h3>
+                            <p>Líneas puras y siluetas depuradas en tonos neutros</p>
+                        </div>
+                    </article>
 
-                <!-- Modelo 3 -->
-                <article class="runway-model-3d">
-                    <picture>
-                        <source
-                            srcset="./assets/images/look-03-dark.png"
-                            type="image/png">
-                        <img src="./assets/images/look-03-dark.png"
-                            alt="Look de cierre de la pasarela" loading="lazy" decoding="async" class="model-img">
-                    </picture>
-                    <div class="model-caption">
-                        <h3>Look 03</h3>
-                        <p>Oscuridad profunda</p>
-                    </div>
-                </article>
+                    <!-- Slide 3 -->
+                    <article class="runway-slide">
+                        <div class="slide-image-wrap">
+                            <img src="./assets/images/look-03-dark.webp" alt="Look 03 — Oscuridad Profunda"
+                                loading="lazy" decoding="async" class="model-img">
+                        </div>
+                        <div class="slide-caption">
+                            <span class="slide-number">03</span>
+                            <h3>Oscuridad Profunda</h3>
+                            <p>Contraste dramático y texturas nocturnas en lana virgen</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Contador de slides -->
+            <div class="slide-counter">
+                <span class="slide-counter-current">01</span>
+                <span class="slide-counter-sep">/</span>
+                <span class="slide-counter-total">03</span>
             </div>
         </section>
 
-        <!-- Sección Catálogo de Autor -->
+        <!-- =====================================================================
+             FILOSOFÍA DE MARCA — Split Screen Dark
+             ===================================================================== -->
+        <section id="filosofia" class="filosofia">
+            <div class="filosofia-inner">
+                <div class="filosofia-text">
+                    <span class="filosofia-label runway-item">Filosofía</span>
+                    <blockquote class="filosofia-quote runway-item delay-200">
+                        "Cada puntada es una decisión. Cada tejido, un compromiso con la tierra y con quien lo viste."
+                    </blockquote>
+                    <p class="filosofia-body runway-item delay-300">
+                        En el atelier de Aura Carmona, la alta costura nace del respeto por la materia prima.
+                        Trabajamos exclusivamente con fibras orgánicas certificadas, tintes naturales y técnicas
+                        artesanales transmitidas entre generaciones. Cada pieza es única, confeccionada bajo pedido,
+                        sin sobreproducción ni desperdicio.
+                    </p>
+                    <p class="filosofia-body runway-item delay-400">
+                        Creemos que el lujo verdadero no se mide en logos, sino en la historia que cuenta cada costura.
+                    </p>
+                    <span class="filosofia-signature runway-item delay-500">— Aura Carmona</span>
+                </div>
+                <div class="filosofia-image runway-item">
+                    <img src="./assets/images/filosofia-atelier.webp" 
+                         alt="Manos de artesana cosiendo bordados en seda en el atelier"
+                         loading="lazy" decoding="async">
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             CATÁLOGO DE AUTOR — Layout Asimétrico
+             ===================================================================== -->
         <section id="catalogo" class="catalog">
             <header class="catalog-header runway-item">
                 <h2 class="section-title">Catálogo de Autor</h2>
@@ -135,12 +232,13 @@
             </header>
 
             <div class="catalog-grid">
-                <!-- Producto 1 -->
-                <article class="catalog-card runway-item">
+                <!-- Producto 1 (HERO — ocupa más espacio) -->
+                <article class="catalog-card catalog-card--hero runway-item">
+                    <span class="card-number">01</span>
                     <div class="card-image-wrap">
-                        <img src="./assets/images/model-cream-dress.png" class="img-main" alt="Vestido Éter"
+                        <img src="./assets/images/model-cream-dress.webp" class="img-main" alt="Vestido Éter"
                             loading="lazy">
-                        <img src="./assets/images/linen-macro-texture.png" class="img-macro"
+                        <img src="./assets/images/linen-macro-texture.webp" class="img-macro"
                             alt="Textura Vestido Éter Macro Lino" loading="lazy">
                     </div>
                     <div class="card-info">
@@ -155,12 +253,13 @@
                 </article>
 
                 <!-- Producto 2 -->
-                <article class="catalog-card runway-item">
+                <article class="catalog-card runway-item delay-200">
+                    <span class="card-number">02</span>
                     <div class="card-image-wrap">
-                        <img src="./assets/images/abrigo-tierra.png"
-                            class="img-main" alt="Abrigo Tierra" loading="lazy">
-                        <img src="./assets/images/abrigo-tierra-macro.png"
-                            class="img-macro" alt="Textura Abrigo Tierra" loading="lazy">
+                        <img src="./assets/images/abrigo-tierra.webp" class="img-main" alt="Abrigo Tierra"
+                            loading="lazy">
+                        <img src="./assets/images/abrigo-tierra-macro.webp" class="img-macro" alt="Textura Abrigo Tierra"
+                            loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Abrigo Tierra</h3>
@@ -175,11 +274,11 @@
 
                 <!-- Producto 3 -->
                 <article class="catalog-card runway-item">
+                    <span class="card-number">03</span>
                     <div class="card-image-wrap">
-                        <img src="./assets/images/blusa-brisa.png"
-                            class="img-main" alt="Blusa Brisa" loading="lazy">
-                        <img src="./assets/images/blusa-brisa-macro.png"
-                            class="img-macro" alt="Textura Blusa Brisa" loading="lazy">
+                        <img src="./assets/images/blusa-brisa.webp" class="img-main" alt="Blusa Brisa" loading="lazy">
+                        <img src="./assets/images/blusa-brisa-macro.webp" class="img-macro" alt="Textura Blusa Brisa"
+                            loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Blusa Brisa</h3>
@@ -193,12 +292,13 @@
                 </article>
 
                 <!-- Producto 4 -->
-                <article class="catalog-card runway-item">
+                <article class="catalog-card runway-item delay-200">
+                    <span class="card-number">04</span>
                     <div class="card-image-wrap">
-                        <img src="./assets/images/pantalon-raiz.png"
-                            class="img-main" alt="Pantalón Raíz" loading="lazy">
-                        <img src="./assets/images/pantalon-raiz-macro.png"
-                            class="img-macro" alt="Textura Pantalón Raíz" loading="lazy">
+                        <img src="./assets/images/pantalon-raiz.webp" class="img-main" alt="Pantalón Raíz"
+                            loading="lazy">
+                        <img src="./assets/images/pantalon-raiz-macro.webp" class="img-macro" alt="Textura Pantalón Raíz"
+                            loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Pantalón Raíz</h3>
@@ -211,13 +311,13 @@
                     </div>
                 </article>
 
-                <!-- Producto 5 -->
-                <article class="catalog-card runway-item">
+                <!-- Producto 5 (WIDE — ocupa ancho completo) -->
+                <article class="catalog-card catalog-card--wide runway-item">
+                    <span class="card-number">05</span>
                     <div class="card-image-wrap">
-                        <img src="./assets/images/falda-musgo.png"
-                            class="img-main" alt="Falda Musgo" loading="lazy">
-                        <img src="./assets/images/falda-musgo-macro.png"
-                            class="img-macro" alt="Textura Falda Musgo" loading="lazy">
+                        <img src="./assets/images/falda-musgo.webp" class="img-main" alt="Falda Musgo" loading="lazy">
+                        <img src="./assets/images/falda-musgo-macro.webp" class="img-macro" alt="Textura Falda Musgo"
+                            loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Falda Musgo</h3>
@@ -231,12 +331,13 @@
                 </article>
 
                 <!-- Producto 6 -->
-                <article class="catalog-card runway-item">
+                <article class="catalog-card runway-item delay-200">
+                    <span class="card-number">06</span>
                     <div class="card-image-wrap">
-                        <img src="./assets/images/chaqueta-ceniza.png"
-                            class="img-main" alt="Chaqueta Ceniza" loading="lazy">
-                        <img src="./assets/images/chaqueta-ceniza-macro.png"
-                            class="img-macro" alt="Textura Chaqueta Ceniza" loading="lazy">
+                        <img src="./assets/images/chaqueta-ceniza.webp" class="img-main" alt="Chaqueta Ceniza"
+                            loading="lazy">
+                        <img src="./assets/images/chaqueta-ceniza-macro.webp" class="img-macro"
+                            alt="Textura Chaqueta Ceniza" loading="lazy">
                     </div>
                     <div class="card-info">
                         <h3 class="card-title">Chaqueta Ceniza</h3>
@@ -251,8 +352,20 @@
             </div>
         </section>
 
-        <!-- Sección de Redes Sociales (Contacto) -->
-        <section id="contacto" class="social">
+        <!-- =====================================================================
+             MARQUEE SEPARADOR DE MARCA
+             ===================================================================== -->
+        <div class="marquee-separator" aria-hidden="true">
+            <div class="marquee-track">
+                <span>Aura Carmona ✦ Alta Costura ✦ Hecho a Mano ✦ Aura Carmona ✦ Alta Costura ✦ Hecho a Mano ✦ Aura Carmona ✦ Alta Costura ✦ Hecho a Mano ✦ Aura Carmona ✦ Alta Costura ✦ Hecho a Mano ✦</span>
+                <span>Aura Carmona ✦ Alta Costura ✦ Hecho a Mano ✦ Aura Carmona ✦ Alta Costura ✦ Hecho a Mano ✦ Aura Carmona ✦ Alta Costura ✦ Hecho a Mano ✦ Aura Carmona ✦ Alta Costura ✦ Hecho a Mano ✦</span>
+            </div>
+        </div>
+
+        <!-- =====================================================================
+             CONECTA — Sección Dark Mode
+             ===================================================================== -->
+        <section id="contacto" class="social social--dark">
             <header class="collections-header runway-item">
                 <h2 class="section-title">Conecta</h2>
                 <p class="section-subtitle">El universo digital</p>
@@ -279,38 +392,63 @@
 
             <!-- Botones de Contacto Directo -->
             <div class="direct-contact-container">
-                    <a href="https://wa.me/1234567890?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20un%20vestido%20a%20medida."
-                        target="_blank" rel="noopener noreferrer" class="contact-btn whatsapp-btn runway-item delay-200">
-                        <div class="btn-content">
-                            <span class="btn-title">WhatsApp</span>
-                            <span class="btn-subtitle">Atención Inmediata</span>
-                        </div>
-                        <span class="btn-icon">→</span>
-                    </a>
-                    <a href="#" class="contact-btn secure-email-btn runway-item delay-300">
-                        <div class="btn-content">
-                            <span class="btn-title">Email</span>
-                            <span class="btn-subtitle">Consultas Detalladas</span>
-                        </div>
-                        <span class="btn-icon">→</span>
-                    </a>
-                </div>
+                <a href="https://wa.me/1234567890?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20un%20vestido%20a%20medida."
+                    target="_blank" rel="noopener noreferrer" class="contact-btn whatsapp-btn runway-item delay-200">
+                    <div class="btn-content">
+                        <span class="btn-title">WhatsApp</span>
+                        <span class="btn-subtitle">Atención Inmediata</span>
+                    </div>
+                    <span class="btn-icon">→</span>
+                </a>
+                <a href="javascript:void(0)" class="contact-btn secure-email-btn runway-item delay-300">
+                    <div class="btn-content">
+                        <span class="btn-title">Email</span>
+                        <span class="btn-subtitle">Consultas Detalladas</span>
+                    </div>
+                    <span class="btn-icon">→</span>
+                </a>
+            </div>
         </section>
     </main>
 
-    <!-- Pie de Página Semántico -->
+    <!-- =====================================================================
+         FOOTER EDITORIAL PREMIUM
+         ===================================================================== -->
     <footer class="site-footer">
-        <div class="footer-content">
-            <p>&copy; <span id="current-year"></span> Aura Carmona. Todos los derechos reservados.</p>
-            <nav class="footer-nav" aria-label="Enlaces legales y políticas">
+        <div class="footer-logo-wrap">
+            <span class="footer-logo">Aura Carmona</span>
+        </div>
+        <div class="footer-columns">
+            <div class="footer-col">
+                <h4 class="footer-col-title">Navegación</h4>
                 <ul>
-                    <li><a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información%20sobre%20la%20pieza%20[Nombre%20de%20la%20Pieza]%20de%20tu%20colección."
-                            class="footer-link" target="_blank" rel="noopener noreferrer">Ventas por WhatsApp</a></li>
-                    <li><a href="#" class="footer-link">Política de Privacidad</a></li>
-                    <li><a href="#" class="footer-link">Términos y Condiciones</a></li>
-                    <li><a href="#" class="footer-link">Declaración de Accesibilidad</a></li>
+                    <li><a href="#colecciones" class="footer-link">Colecciones</a></li>
+                    <li><a href="#filosofia" class="footer-link">Filosofía</a></li>
+                    <li><a href="#catalogo" class="footer-link">Catálogo</a></li>
+                    <li><a href="#contacto" class="footer-link">Contacto</a></li>
                 </ul>
-            </nav>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Legal</h4>
+                <ul>
+                    <li><a href="javascript:void(0)" class="footer-link">Política de Privacidad</a></li>
+                    <li><a href="javascript:void(0)" class="footer-link">Términos y Condiciones</a></li>
+                    <li><a href="javascript:void(0)" class="footer-link">Accesibilidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Atelier</h4>
+                <ul>
+                    <li><a href="https://wa.me/34600000000?text=Hola%20Aura,%20me%20interesa%20obtener%20más%20información."
+                            class="footer-link" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+                    <li><a href="javascript:void(0)" class="footer-link secure-email-btn">Email</a></li>
+                    <li><a href="https://instagram.com" class="footer-link" target="_blank"
+                            rel="noopener noreferrer">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Aura Carmona. Diseñado con dedicación artesanal.</p>
         </div>
     </footer>
 

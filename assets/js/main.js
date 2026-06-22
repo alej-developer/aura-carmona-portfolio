@@ -10,13 +10,74 @@
 
 const RunwayEngine = (() => {
   /**
+   * Preloader Cinematográfico — Telón de Pasarela
+   */
+  const initPreloader = () => {
+    return new Promise((resolve) => {
+      const preloader = document.getElementById('preloader')
+      if (!preloader) { resolve(); return }
+
+      const logo = preloader.querySelector('.preloader-logo')
+      const thread = preloader.querySelector('.preloader-thread')
+      const curtainTop = preloader.querySelector('.preloader-curtain--top')
+      const curtainBottom = preloader.querySelector('.preloader-curtain--bottom')
+
+      document.body.classList.add('is-loading')
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          preloader.style.display = 'none'
+          document.body.classList.remove('is-loading')
+          resolve()
+        }
+      })
+
+      tl
+        // Fase 1: Logo aparece
+        .to(logo, {
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out"
+        })
+        // Fase 2: Hilo rojo se extiende
+        .to(thread, {
+          width: '120px',
+          duration: 0.8,
+          ease: "power4.inOut"
+        }, "-=0.3")
+        // Fase 3: Pausa dramática
+        .to({}, { duration: 0.5 })
+        // Fase 4: Contenido desaparece
+        .to([logo, thread], {
+          opacity: 0,
+          duration: 0.4,
+          ease: "power2.in"
+        })
+        // Fase 5: Cortinas se abren (telón)
+        .to(curtainTop, {
+          yPercent: -100,
+          duration: 1.2,
+          ease: "power4.inOut"
+        }, "-=0.1")
+        .to(curtainBottom, {
+          yPercent: 100,
+          duration: 1.2,
+          ease: "power4.inOut"
+        }, "<") // Simultáneo con curtainTop
+    })
+  }
+
+  /**
    * Inicialización del sistema de Smooth Scroll y Animaciones
    */
-  const init = () => {
+  const init = async () => {
+    // 0. Ejecutar Preloader primero
+    await initPreloader()
+
     // 1. Inicializar Lenis para smooth scrolling inmersivo
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Curva elegante
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
@@ -30,88 +91,93 @@ const RunwayEngine = (() => {
     gsap.registerPlugin(ScrollTrigger)
     lenis.on('scroll', ScrollTrigger.update)
 
-    // Sincronizar el ticker de GSAP con el requestAnimationFrame de Lenis
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000)
     })
-    
-    // Desactivar el lag smoothing de GSAP para evitar conflictos
+
     gsap.ticker.lagSmoothing(0)
 
-    // Inicializar el Custom Cursor (GSAP quickTo para máximo rendimiento)
+    // 3. Inicializar todos los módulos
     initCustomCursor()
+    initCollectionsReveal()
+    initHorizontalScroll()
+    initRunwayItems()
+    initEmailProtection()
+  }
 
-    // 3. Revelación de Pantalla Completa (Hero -> Colecciones)
+  /**
+   * Collections Header Reveal (Clip-path + Mask Text)
+   */
+  const initCollectionsReveal = () => {
     const collectionsSection = document.querySelector('.collections')
-    if (collectionsSection) {
-      const headerMaskTexts = collectionsSection.querySelectorAll('.collections-header .mask-text')
-      const firstModelImg = collectionsSection.querySelector('.runway-model-3d:nth-child(1) .model-img')
+    if (!collectionsSection) return
 
-      // Estado inicial: textos ocultos abajo (máscara) e imagen cerrada al centro
-      gsap.set(headerMaskTexts, { yPercent: 100 })
-      gsap.set(firstModelImg, { clipPath: 'inset(0 50% 0 50%)', scale: 1.4 })
+    const headerMaskTexts = collectionsSection.querySelectorAll('.collections-header .mask-text')
 
-      // Timeline de entrada orquestada con easing premium
-      ScrollTrigger.create({
-        trigger: collectionsSection,
-        start: "top 75%",
-        animation: gsap.timeline()
-          // Telón de la primera imagen
-          .to(firstModelImg, {
-            clipPath: 'inset(0 0% 0 0%)',
-            scale: 1,
-            duration: 2,
-            ease: "power4.out"
-          })
-          // Textos entrando línea por línea desde abajo
-          .to(headerMaskTexts, {
-            yPercent: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power4.out"
-          }, "-=1.5") // Solapado pesado para mayor fluidez
-      })
+    gsap.set(headerMaskTexts, { yPercent: 100 })
+
+    ScrollTrigger.create({
+      trigger: collectionsSection,
+      start: "top 75%",
+      animation: gsap.timeline()
+        .to(headerMaskTexts, {
+          yPercent: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out"
+        })
+    })
+  }
+
+  /**
+   * Scroll Horizontal para Colecciones (GSAP ScrollTrigger)
+   */
+  const initHorizontalScroll = () => {
+    const wrapper = document.querySelector('.horizontal-scroll-wrapper')
+    const track = document.querySelector('.horizontal-scroll-track')
+    if (!wrapper || !track) return
+
+    const slides = track.querySelectorAll('.runway-slide')
+    const counterCurrent = document.querySelector('.slide-counter-current')
+    const totalSlides = slides.length
+
+    // Calcular cuánto hay que desplazar horizontalmente
+    const getScrollAmount = () => {
+      return -(track.scrollWidth - wrapper.clientWidth)
     }
 
-    // 4. Efecto Pasarela (Aparición elegante y Parallax interno)
-    const models3D = document.querySelectorAll('.runway-model-3d')
-    
-    models3D.forEach((model) => {
-      // Aparición del contenedor (fade + slight translate)
-      gsap.fromTo(model, 
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.5,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: model,
-            start: "top 85%", // Inicia cuando el elemento entra en el 85% inferior del viewport
-            once: true
+    gsap.to(track, {
+      x: getScrollAmount,
+      ease: "none",
+      scrollTrigger: {
+        trigger: wrapper,
+        start: "top 15%",
+        end: () => `+=${track.scrollWidth - wrapper.clientWidth}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          // Actualizar contador
+          if (counterCurrent) {
+            const index = Math.min(
+              Math.floor(self.progress * totalSlides) + 1,
+              totalSlides
+            )
+            const formatted = String(index).padStart(2, '0')
+            if (counterCurrent.textContent !== formatted) {
+              counterCurrent.textContent = formatted
+            }
           }
         }
-      )
-
-      // Efecto Parallax suave de la imagen dentro de su contenedor
-      const modelImg = model.querySelector('.model-img')
-      if (modelImg) {
-        // Hacemos la imagen ligeramente más grande para que tenga margen de movimiento sin dejar espacios en blanco
-        gsap.set(modelImg, { scale: 1.15, transformOrigin: "center top" })
-        gsap.to(modelImg, {
-          yPercent: 10, // Se desplaza hacia abajo mientras se hace scroll
-          ease: "none",
-          scrollTrigger: {
-            trigger: model,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        })
       }
     })
+  }
 
-    // Mantenemos animaciones para otros elementos como textos
+  /**
+   * Runway Items — Aparición en Scroll (IntersectionObserver via GSAP)
+   */
+  const initRunwayItems = () => {
     const simpleItems = document.querySelectorAll('.runway-item')
     simpleItems.forEach(item => {
       ScrollTrigger.create({
@@ -121,20 +187,16 @@ const RunwayEngine = (() => {
         once: true
       })
     })
-
-    initEmailProtection()
   }
 
   /**
    * Protección Anti-Spam: Ofuscación de Correo Electrónico
-   * Evita que bots de scraping capturen el email desde el HTML puro.
    */
   const initEmailProtection = () => {
     const emailBtns = document.querySelectorAll('.secure-email-btn')
     emailBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault()
-        // El email se ensambla dinámicamente en tiempo de ejecución
         const user = 'contacto'
         const domain = 'auracarmona.com'
         window.location.href = `mailto:${user}@${domain}`
@@ -150,12 +212,11 @@ const RunwayEngine = (() => {
     const cursorText = document.querySelector('.custom-cursor-text')
     if (!cursor) return
 
-    // Centrar el transform origin usando GSAP en lugar de CSS para no colisionar con quickTo
-    gsap.set(cursor, { xPercent: -50, yPercent: -50 })
+    // La punta de la aguja está en (10, 70) dentro de un viewBox 80x80
+    gsap.set(cursor, { xPercent: -12.5, yPercent: -87.5 })
 
-    // Utilizamos gsap.quickTo para que siga al ratón con un retraso (delay/inercia) fluido
-    const xTo = gsap.quickTo(cursor, "x", { duration: 0.6, ease: "power3.out" })
-    const yTo = gsap.quickTo(cursor, "y", { duration: 0.6, ease: "power3.out" })
+    const xTo = gsap.quickTo(cursor, "x", { duration: 0.4, ease: "power3.out" })
+    const yTo = gsap.quickTo(cursor, "y", { duration: 0.4, ease: "power3.out" })
 
     window.addEventListener("mousemove", (e) => {
       xTo(e.clientX)
@@ -168,14 +229,13 @@ const RunwayEngine = (() => {
     interactables.forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursor.classList.add('is-active')
-        // Cambiamos el texto según el tipo de elemento
         if (el.classList.contains('model-img')) {
           cursorText.textContent = 'Ver'
         } else {
           cursorText.textContent = 'Explorar'
         }
       })
-      
+
       el.addEventListener('mouseleave', () => {
         cursor.classList.remove('is-active')
       })
