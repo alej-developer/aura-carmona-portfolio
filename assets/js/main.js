@@ -37,33 +37,33 @@ const RunwayEngine = (() => {
         .to(logo, {
           opacity: 1,
           duration: 1.2,
-          ease: "power2.out"
+          ease: 'power2.out'
         })
         // Fase 2: Hilo rojo se extiende
         .to(thread, {
           width: '120px',
           duration: 0.8,
-          ease: "power4.inOut"
-        }, "-=0.3")
+          ease: 'power4.inOut'
+        }, '-=0.3')
         // Fase 3: Pausa dramática
         .to({}, { duration: 0.5 })
         // Fase 4: Contenido desaparece
         .to([logo, thread], {
           opacity: 0,
           duration: 0.4,
-          ease: "power2.in"
+          ease: 'power2.in'
         })
         // Fase 5: Cortinas se abren (telón)
         .to(curtainTop, {
           yPercent: -100,
           duration: 1.2,
-          ease: "power4.inOut"
-        }, "-=0.1")
+          ease: 'power4.inOut'
+        }, '-=0.1')
         .to(curtainBottom, {
           yPercent: 100,
           duration: 1.2,
-          ease: "power4.inOut"
-        }, "<") // Simultáneo con curtainTop
+          ease: 'power4.inOut'
+        }, '<') // Simultáneo con curtainTop
     })
   }
 
@@ -118,13 +118,13 @@ const RunwayEngine = (() => {
 
     ScrollTrigger.create({
       trigger: collectionsSection,
-      start: "top 75%",
+      start: 'top 75%',
       animation: gsap.timeline()
         .to(headerMaskTexts, {
           yPercent: 0,
           duration: 1.2,
           stagger: 0.15,
-          ease: "power4.out"
+          ease: 'power4.out'
         })
     })
   }
@@ -148,10 +148,10 @@ const RunwayEngine = (() => {
 
     gsap.to(track, {
       x: getScrollAmount,
-      ease: "none",
+      ease: 'none',
       scrollTrigger: {
         trigger: wrapper,
-        start: "top 15%",
+        start: 'top 15%',
         end: () => `+=${track.scrollWidth - wrapper.clientWidth}`,
         scrub: 1,
         pin: true,
@@ -215,10 +215,10 @@ const RunwayEngine = (() => {
     // La punta de la aguja está en (10, 70) dentro de un viewBox 80x80
     gsap.set(cursor, { xPercent: -12.5, yPercent: -87.5 })
 
-    const xTo = gsap.quickTo(cursor, "x", { duration: 0.4, ease: "power3.out" })
-    const yTo = gsap.quickTo(cursor, "y", { duration: 0.4, ease: "power3.out" })
+    const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3.out' })
+    const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3.out' })
 
-    window.addEventListener("mousemove", (e) => {
+    window.addEventListener('mousemove', (e) => {
       xTo(e.clientX)
       yTo(e.clientY)
     })
