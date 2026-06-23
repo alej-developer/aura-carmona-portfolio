@@ -61,7 +61,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
 }
 
 html {
@@ -1083,64 +1090,101 @@ input:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   16. Custom Cursor (GSAP)
+   16. Custom Cursor — Dot + Ring Premium
    -------------------------------------------------------------------------- */
-.custom-cursor {
+.cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
-  width: 80px;
-  height: 80px;
-  background-color: transparent;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-text-main);
+  border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
-  overflow: visible;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease,
+              background-color 0.3s ease;
 }
 
-.cursor-needle {
-  position: absolute;
+.cursor-ring {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 80px;
-  height: 80px;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.custom-cursor.is-active {
-  width: 80px;
-  height: 80px;
-  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(45 42 38 / 35%);
   border-radius: 50%;
-  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.3s ease,
+              background-color 0.4s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.custom-cursor.is-active .cursor-needle {
+.cursor-label {
   opacity: 0;
-}
-
-.custom-cursor-text {
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-family: var(--font-primary);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #000;
+  letter-spacing: 0.15em;
+  color: var(--color-bg-main);
   white-space: nowrap;
   transition: opacity 0.3s ease;
-  transition-delay: 0s;
+  pointer-events: none;
 }
 
-.custom-cursor.is-active .custom-cursor-text {
+/* --- State: hovering interactive elements --- */
+.cursor-ring.is-active {
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-text-main);
+  border-color: var(--color-text-main);
+}
+
+.cursor-ring.is-active .cursor-label {
   opacity: 1;
-  transition-delay: 0.15s;
+  transition-delay: 0.1s;
+}
+
+.cursor-dot.is-active {
+  opacity: 0;
+}
+
+/* --- State: on dark sections --- */
+.cursor-dot.is-inverted {
+  background-color: var(--color-text-light);
+}
+
+.cursor-ring.is-inverted {
+  border-color: rgb(247 243 240 / 30%);
+}
+
+.cursor-ring.is-inverted.is-active {
+  background-color: var(--color-text-light);
+  border-color: var(--color-text-light);
+}
+
+.cursor-ring.is-inverted.is-active .cursor-label {
+  color: var(--color-bg-dark);
+}
+
+/* Hide custom cursor on touch devices / small screens */
+@media (hover: none), (width < 768px) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    cursor: auto !important;
+  }
 }

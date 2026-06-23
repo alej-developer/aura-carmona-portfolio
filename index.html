@@ -47,51 +47,10 @@
         </div>
     </div>
 
-    <!-- Cursor Personalizado: Aguja de Costura con Hilo -->
-    <div class="custom-cursor">
-        <svg class="cursor-needle" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <!-- Gradiente metálico de acero pulido -->
-                <linearGradient id="needle-steel" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#d4d4d4"/>
-                    <stop offset="25%" stop-color="#fafafa"/>
-                    <stop offset="45%" stop-color="#b0b0b0"/>
-                    <stop offset="70%" stop-color="#888888"/>
-                    <stop offset="100%" stop-color="#666666"/>
-                </linearGradient>
-                <!-- Brillo especular (línea central de reflejo) -->
-                <linearGradient id="needle-shine" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-                    <stop offset="40%" stop-color="#ffffff" stop-opacity="0.9"/>
-                    <stop offset="60%" stop-color="#ffffff" stop-opacity="0.9"/>
-                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-                </linearGradient>
-                <!-- Sombra sutil -->
-                <filter id="needle-shadow">
-                    <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="#2d2a26" flood-opacity="0.18"/>
-                </filter>
-            </defs>
-
-            <!-- AGUJA: cuerpo principal (forma real afilada) -->
-            <path d="M10,70 L12,68 L56,24 L58,26 Z" fill="url(#needle-steel)" filter="url(#needle-shadow)"/>
-            <!-- Brillo especular en el centro de la aguja -->
-            <line x1="11" y1="69" x2="57" y2="25" stroke="url(#needle-shine)" stroke-width="0.6" stroke-linecap="round"/>
-
-            <!-- PUNTA de la aguja (afilada) -->
-            <path d="M10,70 L8,72 L12,68 Z" fill="#999"/>
-
-            <!-- CABEZA de la aguja (zona superior, más ancha) -->
-            <ellipse cx="57" cy="25" rx="2.8" ry="1.4" transform="rotate(-45 57 25)" fill="url(#needle-steel)" filter="url(#needle-shadow)"/>
-
-            <!-- OJO de la aguja (hueco oval) -->
-            <ellipse cx="57" cy="25" rx="1" ry="3.2" transform="rotate(-45 57 25)" fill="#f7f3f0" stroke="#888" stroke-width="0.5"/>
-
-            <!-- HILO: sale del ojo hacia abajo-derecha, curva suelta y ligera -->
-            <path d="M59,27 C 66,34 78,30 72,42 C 66,54 80,58 75,68" 
-                  stroke="#a4161a" stroke-width="1" fill="none" stroke-linecap="round" 
-                  stroke-dasharray="none" opacity="0.85"/>
-        </svg>
-        <span class="custom-cursor-text">Ver</span>
+    <!-- Cursor Personalizado: Punto + Anillo Magnético Premium -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring">
+        <span class="cursor-label">Ver</span>
     </div>
 
     <header class="site-header">

@@ -205,39 +205,67 @@ const RunwayEngine = (() => {
   }
 
   /**
-   * Custom Cursor y Micro-interacciones
+   * Custom Cursor — Dot + Ring Premium con inversión en secciones oscuras
    */
   const initCustomCursor = () => {
-    const cursor = document.querySelector('.custom-cursor')
-    const cursorText = document.querySelector('.custom-cursor-text')
-    if (!cursor) return
+    // No cursor personalizado en dispositivos táctiles
+    if (window.matchMedia('(hover: none)').matches) return
 
-    // La punta de la aguja está en (10, 70) dentro de un viewBox 80x80
-    gsap.set(cursor, { xPercent: -12.5, yPercent: -87.5 })
+    const dot = document.querySelector('.cursor-dot')
+    const ring = document.querySelector('.cursor-ring')
+    const label = document.querySelector('.cursor-label')
+    if (!dot || !ring) return
 
-    const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3.out' })
-    const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3.out' })
+    // GSAP quickTo para movimiento suave con delay diferente
+    const dotX = gsap.quickTo(dot, 'left', { duration: 0.15, ease: 'power2.out' })
+    const dotY = gsap.quickTo(dot, 'top', { duration: 0.15, ease: 'power2.out' })
+    const ringX = gsap.quickTo(ring, 'left', { duration: 0.45, ease: 'power3.out' })
+    const ringY = gsap.quickTo(ring, 'top', { duration: 0.45, ease: 'power3.out' })
 
     window.addEventListener('mousemove', (e) => {
-      xTo(e.clientX)
-      yTo(e.clientY)
+      dotX(e.clientX)
+      dotY(e.clientY)
+      ringX(e.clientX)
+      ringY(e.clientY)
     })
 
-    // Detectar hovers en elementos interactivos para expandir el cursor
+    // Detectar hovers en elementos interactivos
     const interactables = document.querySelectorAll('a, button, .model-img')
 
     interactables.forEach(el => {
       el.addEventListener('mouseenter', () => {
-        cursor.classList.add('is-active')
-        if (el.classList.contains('model-img')) {
-          cursorText.textContent = 'Ver'
-        } else {
-          cursorText.textContent = 'Explorar'
+        dot.classList.add('is-active')
+        ring.classList.add('is-active')
+        if (label) {
+          if (el.classList.contains('model-img')) {
+            label.textContent = 'Ver'
+          } else if (el.classList.contains('card-whatsapp') || el.classList.contains('whatsapp-btn')) {
+            label.textContent = 'Enviar'
+          } else if (el.classList.contains('secure-email-btn')) {
+            label.textContent = 'Email'
+          } else {
+            label.textContent = 'Explorar'
+          }
         }
       })
 
       el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('is-active')
+        dot.classList.remove('is-active')
+        ring.classList.remove('is-active')
+      })
+    })
+
+    // Inversión automática del cursor en secciones oscuras
+    const darkSections = document.querySelectorAll('.filosofia, .social-dark, .site-footer')
+    darkSections.forEach(section => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => { dot.classList.add('is-inverted'); ring.classList.add('is-inverted') },
+        onLeave: () => { dot.classList.remove('is-inverted'); ring.classList.remove('is-inverted') },
+        onEnterBack: () => { dot.classList.add('is-inverted'); ring.classList.add('is-inverted') },
+        onLeaveBack: () => { dot.classList.remove('is-inverted'); ring.classList.remove('is-inverted') }
       })
     })
   }

@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install Linters
         # Usamos herramientas globales y estándares rápidos y estrictos (HTMLHint, StandardJS, Stylelint)
@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Desplegamos desde el directorio raíz ya que ahí está el index.html y assets/
-          path: '.'
+          path: "."
 
       - name: Deploy to GitHub Pages
         id: deployment
