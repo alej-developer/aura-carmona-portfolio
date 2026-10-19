@@ -19,12 +19,18 @@ La estructura del proyecto está organizada de la siguiente manera:
 
 ```text
 /
+├── .github/             # Flujos de GitHub Actions
+│   └── workflows/
+├── .vscode/             # Configuración del editor
 ├── assets/
-│   ├── css/          # Hojas de estilo globales y específicas de componentes
-│   ├── images/       # Imágenes, logotipos y recursos gráficos de alta resolución
-│   └── js/           # Scripts de JavaScript (lógica de UI, animaciones, etc.)
-├── src/              # Archivos fuente (HTML, componentes, etc.)
-└── README.md         # Documentación del proyecto
+│   ├── css/             # Hojas de estilo globales y específicas de componentes
+│   ├── images/          # Imágenes, logotipos y recursos gráficos de alta resolución
+│   └── js/              # Scripts de JavaScript (lógica de UI, animaciones, etc.)
+├── index.html           # Página principal del sitio
+├── .eslintignore        # Exclusiones del linter de JavaScript
+├── .stylelintignore     # Exclusiones del linter de CSS
+├── .stylelintrc.json    # Configuración de Stylelint
+└── README.md            # Documentación del proyecto
 ```
 
 ### 🚀 Despliegue y Alojamiento
@@ -36,7 +42,7 @@ Este proyecto se encuentra alojado y mantenido en el repositorio de GitHub: **[a
 <a id="english"></a>
 ## 🇬🇧 English
 
-Welcome to the official portfolio repository of **Aura Carmona**, a high fashion designer. This static web project has been developed to showcase the elegance, exclusivity, and avant-garde nature that characterize her collections.
+Welcome to the official portfolio repository of **Aura Carmona**, a high-fashion designer. This static web project has been developed to showcase the elegance, exclusivity, and avant-garde nature that characterize her collections.
 
 ### 🌟 About the Project
 
@@ -48,12 +54,18 @@ The project structure is organized as follows:
 
 ```text
 /
+├── .github/             # GitHub Actions workflows
+│   └── workflows/
+├── .vscode/             # Editor settings
 ├── assets/
-│   ├── css/          # Global and component-specific stylesheets
-│   ├── images/       # High-resolution images, logos, and graphic assets
-│   └── js/           # JavaScript scripts (UI logic, animations, etc.)
-├── src/              # Source files (HTML, components, etc.)
-└── README.md         # Project documentation
+│   ├── css/             # Global and component-specific stylesheets
+│   ├── images/          # High-resolution images, logos, and graphic assets
+│   └── js/              # JavaScript scripts (UI logic, animations, etc.)
+├── index.html           # Main page of the site
+├── .eslintignore        # JavaScript linter exclusions
+├── .stylelintignore     # CSS linter exclusions
+├── .stylelintrc.json    # Stylelint configuration
+└── README.md            # Project documentation
 ```
 
 ### 🚀 Deployment & Hosting
